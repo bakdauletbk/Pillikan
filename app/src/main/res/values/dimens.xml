@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="default_padding_big">24dp</dimen>
+    <dimen name="default_padding">16dp</dimen>
+    <dimen name="default_padding_small">8dp</dimen>
+    <dimen name="title_text_size">24sp</dimen>
+    <dimen name="toolbar_logo_size">25dp</dimen>
+    <dimen name="splash_logo_size">90dp</dimen>
+    <dimen name="indicator_size">8dp</dimen>
+    <dimen name="dp_0">0dp</dimen>
+    <dimen name="dp_8">8dp</dimen>
+    <dimen name="dp_16">16dp</dimen>
+    <dimen name="dp_300">300dp</dimen>
+    <dimen name="dp_200">200dp</dimen>
+    <dimen name="dp_32">32dp</dimen>
+</resources>
