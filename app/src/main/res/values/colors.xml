@@ -3,6 +3,7 @@
     <color name="colorPrimary">#EC9B05</color>
     <color name="colorPrimaryDark">@android:color/black</color>
     <color name="colorAccent">#7F53AC</color>
+
     <color name="main_orange">#F5982F</color>
     <color name="grey">#f1f3f4</color>
     <color name="disable_text">#A1ACB6</color>

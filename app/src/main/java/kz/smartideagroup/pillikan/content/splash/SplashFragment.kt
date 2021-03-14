@@ -4,9 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AlphaAnimation
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import kotlinx.android.synthetic.main.fragment_splash.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -14,6 +17,7 @@ import kotlinx.coroutines.launch
 import kz.smartideagroup.pillikan.R
 import kz.smartideagroup.pillikan.common.views.BaseFragment
 import org.jetbrains.anko.support.v4.alert
+
 
 class SplashFragment: BaseFragment() {
 
@@ -41,9 +45,19 @@ class SplashFragment: BaseFragment() {
     }
 
     private fun lets() {
-        viewModel = ViewModelProvider(this).get(SplashViewModel::class.java)
-        CoroutineScope(Dispatchers.IO).launch { checkNetwork() }
+        initViewModel()
+        initNetWorkChecker()
         observer()
+    }
+
+
+    private fun initNetWorkChecker() {
+        CoroutineScope(Dispatchers.IO).launch { checkNetwork() }
+    }
+
+
+    private fun initViewModel() {
+        viewModel = ViewModelProvider(this).get(SplashViewModel::class.java)
     }
 
 
@@ -57,9 +71,11 @@ class SplashFragment: BaseFragment() {
         })
         viewModel.isAuthorize.observe(viewLifecycleOwner, Observer {
             if (it) {
-                requireActivity().findNavController(R.id.main_container).navigate(R.id.action_splashFragment_to_homeFragment)
+                requireActivity().findNavController(R.id.main_container)
+                    .navigate(R.id.action_splashFragment_to_homeFragment)
             } else {
-                requireActivity().findNavController(R.id.main_container).navigate(R.id.action_splashFragment_to_onBoardingFragment)
+                requireActivity().findNavController(R.id.main_container)
+                    .navigate(R.id.action_splashFragment_to_onBoardingFragment)
             }
         })
     }
@@ -86,7 +102,7 @@ class SplashFragment: BaseFragment() {
 
     private suspend fun checkNetwork() {
         if (isFirstLaunch) {
-            delay(4000L)
+            delay(2500L)
             isFirstLaunch = false
         }
         viewModel.checkNetwork(requireContext())

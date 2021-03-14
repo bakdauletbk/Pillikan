@@ -37,7 +37,7 @@
                 android:layout_width="@dimen/dp_200"
                 android:layout_height="@dimen/dp_200"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/ic_cashback"
+                android:src="@drawable/ic_online_payment"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -6,8 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import kz.smartideagroup.pillikan.R
+import kz.smartideagroup.pillikan.common.views.BaseFragment
 
-class WelcomeFragment: Fragment() {
+class WelcomeFragment: BaseFragment() {
 
     companion object {
         const val TAG = "SignInFragment"

@@ -5,13 +5,14 @@
     android:layout_height="match_parent">
 
     <ImageView
+        android:layout_marginTop="@dimen/default_padding_big"
+        android:visibility="visible"
         android:id="@+id/welcome_pillikan_logo"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="@dimen/splash_logo_size"
-        android:padding="@dimen/default_padding_small"
-        android:src="@drawable/ic_pillikan_text"
-        app:layout_constraintBottom_toTopOf="@+id/splash_fragment_animation_view" />
+        android:padding="@dimen/default_padding"
+        android:src="@drawable/ic_pillikan_text"/>
 
     <com.airbnb.lottie.LottieAnimationView
         android:padding="@dimen/default_padding_big"

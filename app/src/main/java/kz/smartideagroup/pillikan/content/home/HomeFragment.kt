@@ -6,8 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import kz.smartideagroup.pillikan.R
+import kz.smartideagroup.pillikan.common.views.BaseFragment
 
-class HomeFragment: Fragment() {
+class HomeFragment: BaseFragment() {
 
     companion object {
         const val TAG = "HomeFragment"

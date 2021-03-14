@@ -12,9 +12,10 @@
     <string name="error_auth_wrong_data_msg">Вы ввели неверный логин или пароль. Пожалуйста, проверьте ваши данные и попробуйте ещё раз</string>
 
     <!--Authorization-->
-    <string name="authorization_login">Логин:</string>
-    <string name="authorization_password">Пароль:</string>
+    <string name="authorization_login">Логин</string>
+    <string name="authorization_password">Пароль</string>
     <string name="authorization_confirm">Войти</string>
+    <string name="authorization_send_sms">Вход по СМС</string>
     <string name="welcome_text">Добро пожаловать!</string>
     <string name="dialog_retry">Ещё раз</string>
     <string name="dialog_exit">Выйти</string>
@@ -27,5 +28,20 @@
     <string name="on_boarding_page_two_text">Плати телефоном, получай бонусы. Кэшбэк до 30% процентов с каждой покупки в любимых заведениях твоего города</string>
     <string name="on_boarding_page_three_title">Заказывай доставку на дом</string>
     <string name="on_boarding_page_three_text">из любимых ресторанов и магазинов и получайте двойной кэшбэк. Оплачивай проезд в автобусах города</string>
+    <string name="authorization_suggest">Войдите чтобы продолжить</string>
+    <string name="phone_hint">Номер телефона</string>
+    <string name="registration_suggest">Я новый пользователь,</string>
+    <string name="registration_button">зарегистрироваться</string>
+    <string name="sign_in_suggest">Я уже зарегистрирован,</string>
+    <string name="sign_in_button">авторизоваться</string>
+    <string name="registration">Создать</string>
+    <string name="registration_fio">ФИО</string>
+    <string name="registration_city">Город</string>
+    <string name="registration_promo">Промо</string>
+    <string name="registration_sms">СМС код</string>
+    <string name="registration_title">Cоздать учетную запись</string>
+    <string name="registration_description">Зарегистрируйтесь, чтобы начать</string>
+    <string name="error_wrong_phone_number">Вы ввели неверный телефон</string>
+    <string name="error_wrong_password">Слишком короткий пароль</string>
 
 </resources>
