@@ -23,5 +23,10 @@ class SignInRepository(application: Application): BaseRepository(application) {
         return networkService.signIn(applicationVersion, contentType, clientId, signInData)
     }
 
+    suspend fun saveCurrentUserPreferences(){
+
+    }
+
+
 
 }

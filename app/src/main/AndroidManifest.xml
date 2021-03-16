@@ -5,6 +5,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
     <application
         android:name=".PillikanApplication"
@@ -17,19 +18,16 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
 
-
         <activity
             android:name=".content.FoundationActivity"
             android:configChanges="orientation|screenSize">
-
             <intent-filter>
-
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-
             </intent-filter>
-
         </activity>
+
+        <service android:name=".common.services.VibrateService"/>
 
     </application>
 </manifest>

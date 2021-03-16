@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="@dimen/default_padding"
+    android:paddingVertical="@dimen/default_padding_big">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/suggest_animation_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+    <com.airbnb.lottie.LottieAnimationView
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/default_padding_small"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/notification_orange" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <TextView
+        android:id="@+id/dialog_suggest_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_padding_big"
+        android:gravity="center"
+        android:text="Временный текст уведомления"
+        app:layout_constraintTop_toBottomOf="@+id/suggest_animation_view" />
+
+    <TextView
+        android:id="@+id/dialog_suggest_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_padding_big"
+        android:background="@drawable/bg_orange_button"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/default_padding_big"
+        android:paddingVertical="@dimen/default_padding_small"
+        android:text="Закрыть"
+        android:textColor="@color/white"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_suggest_message" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

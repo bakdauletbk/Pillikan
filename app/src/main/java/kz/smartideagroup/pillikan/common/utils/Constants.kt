@@ -11,9 +11,12 @@ const val AUTH_TOKEN_PREFIX = "Bearer "
 const val RESPONSE_SUCCESS_CODE = 200
 const val CONTENT_TYPE_JSON = "application/json; charset=utf-8"
 const val CLIENT_ID = "bW9iaWxl"
+const val ONE_SECOND_INT = 1
+const val ALERT_DIALOG_CLOSE_TIMER_SEC = 5
 const val CORRECT_SMS_LENGTH = 6
 const val REPEAT_SMS_TIME = 60
 const val REPEAT_SMS_TIME_ONE_MINUTE = 60
 const val TIME_OVER = 0
+const val DELAY_ONE_SECOND = 1000L
 const val DELAY_THREE_SECOND = 3000L
 val DEBUG_MODE = BuildConfig.DEBUG

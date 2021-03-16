@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.on_boarding_fragment.*
 import kz.smartideagroup.pillikan.R
@@ -15,7 +13,7 @@ import kz.smartideagroup.pillikan.common.views.viewBinding
 import kz.smartideagroup.pillikan.databinding.OnBoardingFragmentBinding
 import org.jetbrains.anko.sdk27.coroutines.onClick
 
-class OnBoardingFragment: BaseFragment() {
+class OnBoardingFragment: BaseFragment(R.layout.fragment_sign_in) {
 
     companion object {
         const val TAG = "OnBoardingFragment"

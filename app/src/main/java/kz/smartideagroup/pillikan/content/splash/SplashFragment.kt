@@ -4,22 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AlphaAnimation
-import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
-import kotlinx.android.synthetic.main.fragment_splash.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kz.smartideagroup.pillikan.R
 import kz.smartideagroup.pillikan.common.views.BaseFragment
-import org.jetbrains.anko.support.v4.alert
 
 
-class SplashFragment: BaseFragment() {
+class SplashFragment : BaseFragment(R.layout.fragment_sign_in) {
 
     companion object {
         const val TAG = "SplashFragment"
@@ -29,6 +24,7 @@ class SplashFragment: BaseFragment() {
     private var isFirstLaunch = true
 
     private var root: View? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -66,38 +62,22 @@ class SplashFragment: BaseFragment() {
             if (it) {
                 checkAuthorize()
             } else {
-                showNetworkDialogue()
+                showException(getString(R.string.error_unknown_body))
             }
         })
         viewModel.isAuthorize.observe(viewLifecycleOwner, Observer {
+            showLoading()
             if (it) {
-                requireActivity().findNavController(R.id.main_container)
-                    .navigate(R.id.action_splashFragment_to_homeFragment)
+                navigateTo(R.id.action_splashFragment_to_homeFragment)
             } else {
-                requireActivity().findNavController(R.id.main_container)
-                    .navigate(R.id.action_splashFragment_to_onBoardingFragment)
+                navigateTo(R.id.action_splashFragment_to_onBoardingFragment)
             }
+            hideLoading()
         })
     }
 
     private fun checkAuthorize() {
         viewModel.checkAuthorize()
-    }
-
-    private fun showNetworkDialogue() {
-        alert {
-
-            isCancelable = false
-            title = getString(R.string.error_no_internet_title)
-            message = getString(R.string.error_no_internet_msg)
-            negativeButton(getString(R.string.dialog_exit)) {
-                requireActivity().finish()
-            }
-            positiveButton(getString(R.string.dialog_retry)) {
-                it.dismiss()
-                onResume()
-            }
-        }.show()
     }
 
     private suspend fun checkNetwork() {

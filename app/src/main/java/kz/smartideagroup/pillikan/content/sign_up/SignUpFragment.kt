@@ -10,7 +10,7 @@ import kz.smartideagroup.pillikan.common.views.viewBinding
 import kz.smartideagroup.pillikan.databinding.FragmentSignUpBinding
 import org.jetbrains.anko.sdk27.coroutines.onClick
 
-class SignUpFragment: BaseFragment() {
+class SignUpFragment: BaseFragment(R.layout.fragment_sign_in) {
 
     companion object {
         const val TAG = "SignUpFragment"
