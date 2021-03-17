@@ -44,8 +44,29 @@ fun String.validatePhone(): Boolean {
 }
 
 fun String.validatePassword(): Boolean {
-    if (clearPhoneSymbols().length > PASSWORD_MIN_LENGTH) {
+    if (clearPhoneSymbols().length > MIN_LENGTH_FIVE) {
             return true
+    }
+    return false
+}
+
+fun String.validateCityId(): Boolean {
+    if (length >= NUMBER_ONE) {
+        return true
+    }
+    return false
+}
+
+fun String.validatePromo(): Boolean {
+    if (length >= MIN_LENGTH_FIVE) {
+        return true
+    }
+    return false
+}
+
+fun String.validateFullName(): Boolean {
+    if (length >= MIN_LENGTH_FIVE) {
+        return true
     }
     return false
 }

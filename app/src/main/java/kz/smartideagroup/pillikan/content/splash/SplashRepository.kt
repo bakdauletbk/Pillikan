@@ -2,38 +2,17 @@ package kz.smartideagroup.pillikan.content.splash
 
 import android.app.Application
 import android.content.Context
-import android.util.Log
 import kz.smartideagroup.pillikan.common.helpers.NetworkHelper
-import kz.smartideagroup.pillikan.common.preferences.UserSession
-import java.lang.Exception
+import kz.smartideagroup.pillikan.common.remote.BaseRepository
 
-class SplashRepository(application: Application) {
+class SplashRepository(application: Application) : BaseRepository(application) {
 
-    companion object {
-        const val TAG = "SplashRepository"
+    fun getIsNetworkConnected(context: Context): Boolean {
+        return NetworkHelper.isNetworkConnected(context)
     }
 
-    private var sharedPreferences =
-        application.getSharedPreferences("userSession", Context.MODE_PRIVATE)
-    private var userSession: UserSession =
-        UserSession(sharedPreferences)
-
-    fun checkNetwork(context: Context): Boolean {
-        return try {
-            NetworkHelper.isNetworkConnected(context)
-        } catch (exception: Exception) {
-            Log.e(TAG, exception.message.toString())
-            false
-        }
-    }
-
-    fun checkAuthorize(): Boolean? {
-        return try {
-            userSession.getIsAuthorize()
-        } catch (exception: Exception) {
-            Log.e(TAG, exception.message.toString())
-            false
-        }
+    fun getIsAuthorized(): Boolean {
+        return userSession.getIsAuthorize()
     }
 
 }

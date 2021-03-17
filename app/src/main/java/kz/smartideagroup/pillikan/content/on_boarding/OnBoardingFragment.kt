@@ -1,64 +1,60 @@
 package kz.smartideagroup.pillikan.content.on_boarding
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.navigation.findNavController
+import androidx.activity.addCallback
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.on_boarding_fragment.*
 import kz.smartideagroup.pillikan.R
+import kz.smartideagroup.pillikan.common.base_interfaces.FragmentImpl
 import kz.smartideagroup.pillikan.common.views.BaseFragment
 import kz.smartideagroup.pillikan.common.views.viewBinding
 import kz.smartideagroup.pillikan.databinding.OnBoardingFragmentBinding
 import org.jetbrains.anko.sdk27.coroutines.onClick
 
-class OnBoardingFragment: BaseFragment(R.layout.fragment_sign_in) {
+class OnBoardingFragment: BaseFragment(R.layout.on_boarding_fragment), FragmentImpl {
 
-    companion object {
-        const val TAG = "OnBoardingFragment"
-    }
-
-
-    private var root: View? = null
     private val binding by viewBinding(OnBoardingFragmentBinding::bind)
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        root = inflater.inflate(R.layout.on_boarding_fragment, container, false)
-        return root
-    }
+    private var isFirstOnBackPressed = true
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         lets()
     }
 
-    private fun lets() {
-        setUpViewPagerWithIndicators()
+    override fun lets() {
+        setupViewPagerIndicators()
         setupListeners()
     }
 
-    private fun setUpViewPagerWithIndicators() {
-        on_boarding_fragment_view_pager.adapter = OnBoardingPagerAdapter()
+    override fun setupObservers() {}
+    override fun setupViewModel() {}
 
-        TabLayoutMediator(
-            on_boarding_fragment_tab_layout,
-            on_boarding_fragment_view_pager
-        ) { _, _ -> }.attach()
+    private fun setupViewPagerIndicators() {
+        binding.onBoardingFragmentViewPager.adapter = OnBoardingPagerAdapter()
+        TabLayoutMediator(on_boarding_fragment_tab_layout,on_boarding_fragment_view_pager)
+        { _, _ -> }.attach()
     }
 
-    private fun setupListeners() {
+    override fun setupListeners() {
         binding.onBoardingFragmentSkip.onClick {
-            requireActivity().findNavController(R.id.main_container)
-                .navigate(R.id.action_onBoardingFragment_to_signInFragment)
+            navigateTo(R.id.action_onBoardingFragment_to_signInFragment)
         }
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            when(isFirstOnBackPressed){
+                true -> applicationFinishNotify()
+                false -> requireActivity().finish()
+            }
+        }
+    }
 
-
+    private fun applicationFinishNotify(){
+        showLongToast(getString(R.string.confirm_finish))
+        isFirstOnBackPressed = false
+    }
 
 }

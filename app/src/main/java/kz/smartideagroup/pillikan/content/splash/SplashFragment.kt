@@ -1,98 +1,90 @@
 package kz.smartideagroup.pillikan.content.splash
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kz.smartideagroup.pillikan.R
+import kz.smartideagroup.pillikan.common.base_interfaces.FragmentImpl
+import kz.smartideagroup.pillikan.common.utils.DELAY_THREE_SECOND
 import kz.smartideagroup.pillikan.common.views.BaseFragment
 
 
-class SplashFragment : BaseFragment(R.layout.fragment_sign_in) {
-
-    companion object {
-        const val TAG = "SplashFragment"
-    }
+class SplashFragment : BaseFragment(R.layout.fragment_splash), FragmentImpl {
 
     private lateinit var viewModel: SplashViewModel
     private var isFirstLaunch = true
-
-    private var root: View? = null
-
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        root = inflater.inflate(R.layout.fragment_splash, container, false)
-        return root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         lets()
     }
 
-    private fun lets() {
-        initViewModel()
+    override fun lets() {
+        setupViewModel()
+        setupListeners()
+        setupObservers()
         initNetWorkChecker()
-        observer()
     }
 
+    override fun setupViewModel() {
+        viewModel = ViewModelProvider(this)
+            .get(SplashViewModel::class.java)
+    }
+
+    override fun setupListeners() {}
 
     private fun initNetWorkChecker() {
-        CoroutineScope(Dispatchers.IO).launch { checkNetwork() }
-    }
-
-
-    private fun initViewModel() {
-        viewModel = ViewModelProvider(this).get(SplashViewModel::class.java)
-    }
-
-
-    private fun observer() {
-        viewModel.isNetworkConnection.observe(viewLifecycleOwner, Observer {
-            if (it) {
-                checkAuthorize()
-            } else {
-                showException(getString(R.string.error_unknown_body))
-            }
-        })
-        viewModel.isAuthorize.observe(viewLifecycleOwner, Observer {
-            showLoading()
-            if (it) {
-                navigateTo(R.id.action_splashFragment_to_homeFragment)
-            } else {
-                navigateTo(R.id.action_splashFragment_to_onBoardingFragment)
-            }
-            hideLoading()
-        })
-    }
-
-    private fun checkAuthorize() {
-        viewModel.checkAuthorize()
-    }
-
-    private suspend fun checkNetwork() {
-        if (isFirstLaunch) {
-            delay(2500L)
-            isFirstLaunch = false
+        CoroutineScope(Dispatchers.IO).launch {
+            checkNetworkConnection()
         }
-        viewModel.checkNetwork(requireContext())
+    }
+
+    override fun setupObservers() {
+        viewModel.isNetworkConnected.observe(viewLifecycleOwner, {
+            when(it){
+                true -> getIsAuthorized()
+                false -> showException(getString(R.string.error_unknown_body))
+            }
+        })
+        viewModel.isAuthorized.observe(viewLifecycleOwner, {
+            when(it){
+                true -> navigateTo(R.id.action_splashFragment_to_homeFragment)
+                false -> navigateTo(R.id.action_splashFragment_to_onBoardingFragment)
+            }
+        })
+    }
+
+    private fun getIsAuthorized() {
+        viewModel.getIsAuthorized()
+    }
+
+    private suspend fun checkNetworkConnection() {
+        when(isFirstLaunch){
+            true -> firstLaunch()
+            else -> getIsNetworkConnected()
+        }
+    }
+
+    private suspend fun firstLaunch(){
+        isFirstLaunch = false
+        delay(DELAY_THREE_SECOND)
+        getIsNetworkConnected()
+    }
+
+    private fun getIsNetworkConnected() {
+        viewModel.getIsNetworkConnected(requireContext())
     }
 
     override fun onResume() {
         super.onResume()
         CoroutineScope(Dispatchers.IO).launch {
-            checkNetwork()
+            checkNetworkConnection()
         }
     }
+
 
 }

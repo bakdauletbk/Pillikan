@@ -45,5 +45,8 @@
     <string name="error_wrong_password">Слишком короткий пароль</string>
     <string name="unknown">Пожалуйста проверьте Ваше интернет соединение или попробуйте позже</string>
     <string name="sms_was_sended_action">Ок</string>
+    <string name="confirm_finish">Нажмите ещё раз для выхода</string>
+    <string name="error_sms_not_sended">Не удалось отправить сообщение, попробуйте пожалуйста попозже</string>
+    <string name="sms_was_sended">СМС с временным паролем отправлено на номер: </string>
 
 </resources>

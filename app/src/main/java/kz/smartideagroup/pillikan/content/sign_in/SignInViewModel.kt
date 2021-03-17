@@ -1,52 +1,80 @@
 package kz.smartideagroup.pillikan.content.sign_in
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.google.gson.Gson
-import com.google.gson.JsonObject
-import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.launch
-import kz.smartideagroup.pillikan.common.remote.exceptions_util.ExceptionModel
-import kz.smartideagroup.pillikan.common.utils.RESPONSE_SUCCESS_CODE
+import kz.smartideagroup.pillikan.common.utils.UtilsObject
+import kz.smartideagroup.pillikan.common.utils.validatePassword
+import kz.smartideagroup.pillikan.common.utils.validatePhone
 import kz.smartideagroup.pillikan.content.sign_in.models.SignInRequest
-import org.json.JSONObject
-import java.lang.Exception
-import java.util.logging.ErrorManager
+import kz.smartideagroup.pillikan.content.sign_in.models.SignInResponse
+import retrofit2.Response
 
-class SignInViewModel(application: Application): AndroidViewModel(application) {
-
-    companion object{
-        const val TAG = "SignInViewModel"
-    }
+class SignInViewModel(application: Application) : AndroidViewModel(application) {
 
     private var repository: SignInRepository = SignInRepository(application)
+
     val isError: MutableLiveData<String?> = MutableLiveData()
     val isSuccess: MutableLiveData<Boolean> = MutableLiveData()
     val isLoading: MutableLiveData<Boolean> = MutableLiveData()
 
-    fun checkAuthorizationResult(signInData: SignInRequest){
+    val isPhoneInvalid:  MutableLiveData<Boolean> = MutableLiveData()
+    val isPasswordInvalid: MutableLiveData<Boolean> = MutableLiveData()
+
+    val isSmsWasSend: MutableLiveData<Boolean> = MutableLiveData()
+
+    suspend fun validateSmsData(phone: String){
+        isPhoneInvalid.postValue(!phone.validatePhone())
+        when(phone.validatePhone()){
+            true -> sendRestorePasswordSmsCode(UtilsObject.formatNumber(phone))
+            else -> isError.postValue(null)
+        }
+    }
+
+    fun validateAuthData(phone: String, password: String){
+        isPhoneInvalid.postValue(!phone.validatePhone())
+        isPasswordInvalid.postValue(!password.validatePassword())
+        when(phone.validatePhone() && password.validatePassword()){
+            true -> checkAuthorizationResult(phone, password)
+        }
+    }
+
+    private fun checkAuthorizationResult(phone: String, password: String) {
         isLoading.postValue(true)
         viewModelScope.launch {
-            try {
-                val response = repository.getAuthorizationResult(signInData)
-                if (response.isSuccessful){
-                        isSuccess.postValue(true)
-                }else{
-                    if (response.errorBody() != null) {
-                        val gson = Gson()
-                        val type = object : TypeToken<ExceptionModel>() {}.type
-                        var errorResponse: ExceptionModel? = gson.fromJson(response.errorBody()!!.charStream(), type)
-                        isError.postValue(errorResponse?.message())
-                    }
-                }
-            }
-            catch (e: Exception){
-                isError.postValue(null)
+            val requestBody = SignInRequest(UtilsObject.formatNumber(phone), password)
+            val response = repository.getAuthorizationResult(requestBody)
+            when (response.isSuccessful) {
+                true -> saveCurrentUserPreferences(response)
+                false -> handleErrorBody(response)
             }
         }
+    }
+
+    private suspend fun sendRestorePasswordSmsCode(phone: String) {
+        isLoading.postValue(true)
+        viewModelScope.launch {
+            val response = repository.getRestorePasswordSms(UtilsObject.encodeToBase64(phone))
+            when (response.isSuccessful) {
+                true -> isSmsWasSend.postValue(response.isSuccessful)
+                false -> handleErrorBody(response)
+            }
+        }
+
+
+    }
+
+    private suspend fun saveCurrentUserPreferences(response: Response<SignInResponse>) {
+        isSuccess.postValue(true)
+        repository.saveCurrentUserPreferences(response)
+    }
+
+
+
+    private fun <T> handleErrorBody(response: Response<T>) {
+        isError.postValue(UtilsObject.handleErrorMessage(response))
     }
 
 }
