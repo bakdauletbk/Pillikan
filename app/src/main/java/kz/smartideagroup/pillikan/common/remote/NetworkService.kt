@@ -16,8 +16,23 @@ interface NetworkService {
         @Body signInRequest: SignInRequest
     ): Response<SignInResponse>
 
+    @POST(EndPoints.SIGN_IN_SMS)
+    suspend fun signInWithSms(
+        @Header("appver") applicationVersion: String,
+        @Header("Content-Type") contentType: String,
+        @Header("clientId") clientId: String,
+        @Body signInRequest: SignInRequest
+    ): Response<SignInResponse>
+
     @POST(EndPoints.SEND_SMS)
     suspend fun sendSMS(
+        @Header("username") phone: String,
+        @Header("appver") applicationVersion: String
+    ): Response<Any?>
+
+
+    @POST(EndPoints.SIGN_UP_SMS)
+    suspend fun sendSMStoSignUp(
         @Header("username") phone: String,
         @Header("appver") applicationVersion: String
     ): Response<Any?>

@@ -1,5 +1,9 @@
 package kz.smartideagroup.pillikan.content.sign_in
 
+import android.content.ActivityNotFoundException
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,6 +15,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kz.smartideagroup.pillikan.R
 import kz.smartideagroup.pillikan.common.base_interfaces.FragmentImpl
+import kz.smartideagroup.pillikan.common.utils.SIGN_IN_TYPE_PASS
+import kz.smartideagroup.pillikan.common.utils.SIGN_IN_TYPE_SMS
 import kz.smartideagroup.pillikan.common.views.BaseFragment
 import kz.smartideagroup.pillikan.common.views.viewBinding
 import kz.smartideagroup.pillikan.databinding.FragmentSignInBinding
@@ -20,6 +26,7 @@ class SignInFragment : BaseFragment(R.layout.fragment_sign_in), FragmentImpl {
 
     private lateinit var viewModel: SignInViewModel
     private val binding by viewBinding(FragmentSignInBinding::bind)
+    private var signInType = SIGN_IN_TYPE_PASS
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -56,27 +63,29 @@ class SignInFragment : BaseFragment(R.layout.fragment_sign_in), FragmentImpl {
         binding.registrationButton.onClick {
             navigateTo(R.id.action_signInFragment_to_signUpFragment)
         }
-        binding.restorePasswordButton.onClick {
-            validateSmsData()
+        binding.authTypeChangeButton.onClick {
+            changeSignInType()
         }
         binding.authorizationConfirmButton.onClick {
             validateAuthData()
         }
     }
 
-    override fun setupObservers(){
+    override fun setupObservers() {
         viewModel.isLoading.observe(viewLifecycleOwner, {
             when (it) {
                 true -> showLoading()
                 false -> hideLoading()
             }
         })
+
         viewModel.isError.observe(viewLifecycleOwner, {
             when (it == null) {
                 true -> showException(getString(R.string.unknown))
                 false -> showException(it)
             }
         })
+
         viewModel.isSuccess.observe(viewLifecycleOwner, {
             navigateTo(R.id.action_signInFragment_to_homeFragment)
         })
@@ -84,6 +93,7 @@ class SignInFragment : BaseFragment(R.layout.fragment_sign_in), FragmentImpl {
         viewModel.isPhoneInvalid.observe(viewLifecycleOwner, {
             when (it) {
                 true -> {
+                    changeSignInTypeToPass()
                     binding.authorizationFragmentPhoneTil.error =
                         getString(R.string.error_wrong_phone_number)
                 }
@@ -125,8 +135,30 @@ class SignInFragment : BaseFragment(R.layout.fragment_sign_in), FragmentImpl {
         CoroutineScope(Dispatchers.IO).launch {
             val phone = binding.authorizationFragmentPhoneValue.text.toString()
             val password = binding.authorizationInputPasswordValue.text.toString()
-            viewModel.validateAuthData(phone, password)
+            viewModel.validateAuthData(phone, password, signInType)
         }
+    }
+
+    private fun changeSignInType() {
+        when (signInType) {
+            SIGN_IN_TYPE_PASS -> {
+                changeSignInTypeToSms()
+            }
+            SIGN_IN_TYPE_SMS -> {
+                changeSignInTypeToPass()
+            }
+        }
+    }
+
+    private fun changeSignInTypeToPass(){
+        signInType = SIGN_IN_TYPE_PASS
+        binding.authTypeChangeButton.setText(getString(R.string.sign_in_type_sms))
+    }
+
+    private fun changeSignInTypeToSms(){
+        signInType = SIGN_IN_TYPE_SMS
+        binding.authTypeChangeButton.setText(getString(R.string.sign_in_type_password))
+        validateSmsData()
     }
 
     private fun validateSmsData() {

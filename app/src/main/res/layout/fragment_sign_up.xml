@@ -33,18 +33,43 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/registration_input_city_layout"
+            style="@style/ModuleExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:endIconMode="clear_text"
+            app:errorIconDrawable="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <AutoCompleteTextView
+                android:id="@+id/registration_input_city_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:completionThreshold="1"
+                android:enabled="false"
+                android:focusable="true"
+                android:hint="@string/registration_city"
+                android:inputType="text"
+                android:text="@string/city_name_shymkent"
+                tools:ignore="LabelFor" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/registration_fragment_phone_til"
             style="@style/ModuleBase"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/phone_hint"
             app:endIconMode="clear_text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/registration_input_city_layout">
 
             <kz.smartideagroup.pillikan.common.views.PhoneEditText
-                android:id="@+id/authorization_fragment_phone_value"
+                android:id="@+id/registration_fragment_phone_value"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:imeOptions="actionDone"
@@ -58,6 +83,7 @@
             style="@style/ModuleExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             app:endIconMode="clear_text"
             app:errorIconDrawable="@null"
             app:layout_constraintTop_toBottomOf="@+id/registration_fragment_phone_til">
@@ -69,40 +95,22 @@
                 android:completionThreshold="1"
                 android:hint="@string/registration_fio"
                 android:inputType="text"
+                android:maxLength="16"
                 tools:ignore="LabelFor" />
 
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/registration_input_city_layout"
-            style="@style/ModuleExposedDropdownMenu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:endIconMode="clear_text"
-            app:errorIconDrawable="@null"
-            app:layout_constraintTop_toBottomOf="@+id/registration_input_fio_layout">
-
-            <AutoCompleteTextView
-                android:id="@+id/registration_input_city_value"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:completionThreshold="1"
-                android:hint="@string/registration_city"
-                android:inputType="text"
-                tools:ignore="LabelFor" />
-
-
-        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/registration_input_promo_layout"
             style="@style/ModuleExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             app:endIconMode="clear_text"
             app:errorIconDrawable="@null"
-            app:layout_constraintTop_toBottomOf="@+id/registration_input_city_layout">
+            app:layout_constraintTop_toBottomOf="@+id/registration_input_fio_layout">
 
             <AutoCompleteTextView
                 android:id="@+id/registration_input_promo_value"
@@ -117,16 +125,17 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/authorization_input_password_layout"
+            android:id="@+id/registration_input_password_layout"
             style="@style/ModuleExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             app:endIconMode="clear_text"
             app:errorIconDrawable="@null"
             app:layout_constraintTop_toBottomOf="@+id/registration_input_promo_layout">
 
             <AutoCompleteTextView
-                android:id="@+id/authorization_input_password_value"
+                android:id="@+id/registration_input_password_value"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:completionThreshold="1"
@@ -147,16 +156,16 @@
             android:text="@string/authorization_send_sms"
             android:textColor="@color/disable_text"
             android:visibility="invisible"
-            app:layout_constraintTop_toBottomOf="@+id/authorization_input_password_layout" />
+            app:layout_constraintTop_toBottomOf="@+id/registration_input_password_layout" />
 
         <TextView
-            android:id="@+id/welcome_ok_button"
+            android:id="@+id/registration_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_orange_button"
             android:gravity="center"
             android:padding="@dimen/default_padding"
-            android:text="@string/registration"
+            android:text="@string/registration_send_sms"
             android:textColor="@android:color/white"
             app:layout_constraintTop_toBottomOf="@+id/restore_password_button" />
 

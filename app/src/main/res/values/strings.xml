@@ -14,6 +14,7 @@
     <!--Authorization-->
     <string name="authorization_login">Логин</string>
     <string name="authorization_password">Пароль</string>
+    <string name="authorization_sms">СМС-код</string>
     <string name="authorization_confirm">Войти</string>
     <string name="authorization_send_sms">Вход по СМС</string>
     <string name="welcome_text">Добро пожаловать!</string>
@@ -34,19 +35,26 @@
     <string name="registration_button">зарегистрироваться</string>
     <string name="sign_in_suggest">Я уже зарегистрирован,</string>
     <string name="sign_in_button">авторизоваться</string>
-    <string name="registration">Создать</string>
-    <string name="registration_fio">ФИО</string>
+    <string name="registration">Подтвердить регистрацию</string>
+    <string name="registration_send_sms">Отправить СМС-КОД</string>
+    <string name="registration_fio">Ваше имя</string>
     <string name="registration_city">Город</string>
-    <string name="registration_promo">Промо</string>
+    <string name="registration_promo">Промо (не обязательно)</string>
     <string name="registration_sms">СМС код</string>
     <string name="registration_title">Cоздать учетную запись</string>
     <string name="registration_description">Зарегистрируйтесь, чтобы начать</string>
     <string name="error_wrong_phone_number">Вы ввели неверный телефон</string>
-    <string name="error_wrong_password">Слишком короткий пароль</string>
+    <string name="error_wrong_password">Ваш пароль некорректен</string>
     <string name="unknown">Пожалуйста проверьте Ваше интернет соединение или попробуйте позже</string>
     <string name="sms_was_sended_action">Ок</string>
     <string name="confirm_finish">Нажмите ещё раз для выхода</string>
     <string name="error_sms_not_sended">Не удалось отправить сообщение, попробуйте пожалуйста попозже</string>
     <string name="sms_was_sended">СМС с временным паролем отправлено на номер: </string>
+    <string name="sign_in_type_password">Вход по паролю</string>
+    <string name="sign_in_type_sms">Восстановить по СМС</string>
+    <string name="city_name_shymkent">Шымкент</string>
+    <string name="only_shymkent_text">В данный момент, мы работаем только в г.Шымкент. Новые города уже скоро!</string>
+    <string name="error_wrong_fio">Недопустимое имя</string>
+    <string name="success_registration_text">Вы зарегистрированы! Используйте СМС код как пароль для входа.</string>
 
 </resources>

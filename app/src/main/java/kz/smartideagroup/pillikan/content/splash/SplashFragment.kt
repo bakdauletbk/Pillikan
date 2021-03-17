@@ -1,6 +1,7 @@
 package kz.smartideagroup.pillikan.content.splash
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.coroutines.CoroutineScope
@@ -65,7 +66,6 @@ class SplashFragment : BaseFragment(R.layout.fragment_splash), FragmentImpl {
     private suspend fun checkNetworkConnection() {
         when(isFirstLaunch){
             true -> firstLaunch()
-            else -> getIsNetworkConnected()
         }
     }
 

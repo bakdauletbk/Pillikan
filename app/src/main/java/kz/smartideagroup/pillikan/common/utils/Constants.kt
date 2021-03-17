@@ -2,10 +2,15 @@ package kz.smartideagroup.pillikan.common.utils
 
 import kz.smartideagroup.pillikan.BuildConfig
 
+const val SIGN_IN_TYPE_PASS = 0
+const val SIGN_IN_TYPE_SMS = 1
+
+
 const val ALLOWED_SYMBOL_PHONE = '9'
 const val INDEX_NOT_ALLOWED_SYMBOL_PHONE = 2
 const val PHONE_LENGTH = 12
 const val MIN_LENGTH_FIVE = 5
+const val SMS_FROM = "SMSTraffic"
 const val EMPTY_STRING = ""
 const val SHYMKENT_CITY_ID = 176
 const val AUTH_TOKEN_PREFIX = "Bearer "

@@ -1,13 +1,12 @@
 package kz.smartideagroup.pillikan.content.sign_in
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import kz.smartideagroup.pillikan.common.utils.UtilsObject
-import kz.smartideagroup.pillikan.common.utils.validatePassword
-import kz.smartideagroup.pillikan.common.utils.validatePhone
+import kz.smartideagroup.pillikan.common.utils.*
 import kz.smartideagroup.pillikan.content.sign_in.models.SignInRequest
 import kz.smartideagroup.pillikan.content.sign_in.models.SignInResponse
 import retrofit2.Response
@@ -29,15 +28,22 @@ class SignInViewModel(application: Application) : AndroidViewModel(application) 
         isPhoneInvalid.postValue(!phone.validatePhone())
         when(phone.validatePhone()){
             true -> sendRestorePasswordSmsCode(UtilsObject.formatNumber(phone))
-            else -> isError.postValue(null)
+            false -> isPhoneInvalid.postValue(!phone.validatePhone())
         }
     }
 
-    fun validateAuthData(phone: String, password: String){
+    fun validateAuthData(phone: String, password: String, signInType: Int){
         isPhoneInvalid.postValue(!phone.validatePhone())
         isPasswordInvalid.postValue(!password.validatePassword())
         when(phone.validatePhone() && password.validatePassword()){
-            true -> checkAuthorizationResult(phone, password)
+            true -> selectSignInType(phone, password, signInType)
+        }
+    }
+
+    private fun selectSignInType(phone: String, password: String, signInType: Int){
+        when(signInType) {
+            SIGN_IN_TYPE_PASS -> checkAuthorizationResult(phone, password)
+            SIGN_IN_TYPE_SMS -> checkAuthorizationResultWithSms(phone, password)
         }
     }
 
@@ -46,6 +52,18 @@ class SignInViewModel(application: Application) : AndroidViewModel(application) 
         viewModelScope.launch {
             val requestBody = SignInRequest(UtilsObject.formatNumber(phone), password)
             val response = repository.getAuthorizationResult(requestBody)
+            when (response.isSuccessful) {
+                true -> saveCurrentUserPreferences(response)
+                false -> handleErrorBody(response)
+            }
+        }
+    }
+
+    private fun checkAuthorizationResultWithSms(phone: String, password: String) {
+        isLoading.postValue(true)
+        viewModelScope.launch {
+            val requestBody = SignInRequest(UtilsObject.formatNumber(phone), password)
+            val response = repository.getAuthorizationResultWithSms(requestBody)
             when (response.isSuccessful) {
                 true -> saveCurrentUserPreferences(response)
                 false -> handleErrorBody(response)
@@ -62,16 +80,12 @@ class SignInViewModel(application: Application) : AndroidViewModel(application) 
                 false -> handleErrorBody(response)
             }
         }
-
-
     }
 
     private suspend fun saveCurrentUserPreferences(response: Response<SignInResponse>) {
         isSuccess.postValue(true)
         repository.saveCurrentUserPreferences(response)
     }
-
-
 
     private fun <T> handleErrorBody(response: Response<T>) {
         isError.postValue(UtilsObject.handleErrorMessage(response))

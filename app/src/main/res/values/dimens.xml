@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="default_padding_big">24dp</dimen>
+    <dimen name="default_padding_super">36dp</dimen>
     <dimen name="default_padding">16dp</dimen>
     <dimen name="default_padding_small">8dp</dimen>
     <dimen name="title_text_size">24sp</dimen>

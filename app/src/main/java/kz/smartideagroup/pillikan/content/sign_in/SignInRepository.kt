@@ -12,6 +12,10 @@ class SignInRepository(application: Application): BaseRepository(application) {
         return networkService.signIn(applicationVersion, contentType, clientId, signInData)
     }
 
+    suspend fun getAuthorizationResultWithSms(signInData: SignInRequest): Response<SignInResponse> {
+        return networkService.signInWithSms(applicationVersion, contentType, clientId, signInData)
+    }
+
     suspend fun getRestorePasswordSms(phone: String): Response<Any?> {
         return networkService.sendSMS(phone, applicationVersion)
     }

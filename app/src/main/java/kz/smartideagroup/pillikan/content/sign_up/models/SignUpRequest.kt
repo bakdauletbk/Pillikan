@@ -10,7 +10,7 @@ data class SignUpRequest(
     @SerializedName("fullName")
     val fullName: String,
     @SerializedName("cityId")
-    val cityId: Int,
+    val cityId: String,
     @SerializedName("promo")
     val promo: String
 )
