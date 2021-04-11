@@ -1,3 +1,65 @@
 <resources>
     <string name="app_name">Pillikan</string>
+    <string name="splash_bottom_text">ТОО "Union Service Company"</string>
+
+    <!--Errors-->
+    <string name="error_unknown_title">Что-то пошло не так…</string>
+    <string name="error_unknown_body">Пожалуйста проверьте ваше интернет соединение или попробуйте позднее</string>
+    <string name="error_failed_connection_to_server">Не удалось установить соединение с сервером: \n</string>
+    <string name="error_no_internet_title">Отсутствует интернет соединение</string>
+    <string name="error_no_internet_msg">Пожалуйста проверьте ваше интернет соединение и попробуйте ещё раз</string>
+    <string name="error_auth_wrong_data_title">Авторизация не пройдена</string>
+    <string name="error_auth_wrong_data_msg">Вы ввели неверный логин или пароль. Пожалуйста, проверьте ваши данные и попробуйте ещё раз</string>
+
+    <!--Authorization-->
+    <string name="authorization_login">Логин</string>
+    <string name="authorization_password">Секретный код</string>
+    <string name="authorization_sms">СМС-код</string>
+    <string name="authorization_confirm">Войти</string>
+    <string name="authorization_send_sms">Вход по СМС</string>
+    <string name="welcome_text">Добро пожаловать!</string>
+    <string name="dialog_retry">Ещё раз</string>
+    <string name="dialog_exit">Выйти</string>
+    <string name="welcome_description_text">Это крутое и удобное приложение. Плати телефоном, получай бонусы. Кэшбэк до 30% процентов с каждой покупки в любимых заведениях твоего города. Заказывай доставку на дом из любимых ресторанов и магазинов и получайте двойной кэшбэк. Оплачивай проезд в автобусах города.</string>
+    <string name="welcome_ok_text">Ок</string>
+    <string name="skip">Пропустить</string>
+    <string name="pillikan_ecosystem">Экосистема Pillikan</string>
+    <string name="on_boarding_page_one_text">Платежная система, кэшбэк сервис, служба онлайн доставки, система электронного билетирования в общественном транспорте</string>
+    <string name="on_boarding_page_two_title_text">Это крутое и удобное приложение</string>
+    <string name="on_boarding_page_two_text">Плати телефоном, получай бонусы. Кэшбэк до 30% процентов с каждой покупки в любимых заведениях твоего города</string>
+    <string name="on_boarding_page_three_title">Заказывай доставку на дом</string>
+    <string name="on_boarding_page_three_text">из любимых ресторанов и магазинов и получайте двойной кэшбэк. Оплачивай проезд в автобусах города</string>
+    <string name="authorization_suggest">Войдите чтобы продолжить</string>
+    <string name="phone_hint">Номер телефона</string>
+    <string name="registration_suggest">Я новый пользователь,</string>
+    <string name="registration_button">зарегистрироваться</string>
+    <string name="sign_in_suggest">Я уже зарегистрирован,</string>
+    <string name="sign_in_button">авторизоваться</string>
+    <string name="registration">Подтвердить регистрацию</string>
+    <string name="registration_send_sms">Отправить СМС-КОД</string>
+    <string name="registration_fio">Ваше имя</string>
+    <string name="registration_city">Город</string>
+    <string name="registration_promo">Промо (не обязательно)</string>
+    <string name="registration_sms">СМС код</string>
+    <string name="registration_title">Cоздать учетную запись</string>
+    <string name="registration_description">Зарегистрируйтесь, чтобы начать</string>
+    <string name="error_wrong_phone_number">Вы ввели неверный телефон</string>
+    <string name="error_wrong_password">Ваш пароль некорректен</string>
+    <string name="unknown">Пожалуйста проверьте Ваше интернет соединение или попробуйте позже</string>
+    <string name="sms_was_sended_action">Ок</string>
+    <string name="confirm_finish">Нажмите ещё раз для выхода</string>
+    <string name="error_sms_not_sended">Не удалось отправить сообщение, попробуйте пожалуйста попозже</string>
+    <string name="sms_was_sended">СМС с временным паролем отправлено на номер: </string>
+    <string name="sign_in_type_password">Вход по паролю</string>
+    <string name="sign_in_type_sms">Восстановить по СМС</string>
+    <string name="city_name_shymkent">Шымкент</string>
+    <string name="only_shymkent_text">В данный момент, мы работаем только в г.Шымкент. Новые города уже скоро!</string>
+    <string name="error_wrong_fio">Недопустимое имя</string>
+    <string name="success_registration_text">Вы зарегистрированы! Используйте СМС код как пароль для входа.</string>
+    <string name="nav_home">Главная</string>
+    <string name="nav_cabinet">Личный кабинет</string>
+    <string name="nav_bonuses">Бонусы</string>
+    <string name="welcome_new_partners">Новые партнеры</string>
+    <string name="see_more_items">Посмотреть полный список</string>
+
 </resources>

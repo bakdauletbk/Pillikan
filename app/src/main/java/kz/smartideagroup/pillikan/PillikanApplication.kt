@@ -1,4 +1,6 @@
 package kz.smartideagroup.pillikan
 
-class PillikanApplication {
+import android.app.Application
+
+class PillikanApplication: Application() {
 }

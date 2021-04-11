@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/default_padding"
+    tools:context="kz.smartideagroup.pillikan.content.sign_up.SignUpFragment">
+
+
+    <TextView
+        android:id="@+id/welcome_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/registration_title"
+        android:textColor="@color/title_text_color"
+        android:textSize="@dimen/title_text_size"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/registration_description"
+        android:textColor="@color/disable_text"
+        app:layout_constraintTop_toBottomOf="@id/welcome_tv" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_padding_big"
+        android:paddingTop="@dimen/default_padding_big"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/registration_input_city_layout"
+            style="@style/ModuleExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:endIconMode="clear_text"
+            app:errorIconDrawable="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <AutoCompleteTextView
+                android:id="@+id/registration_input_city_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:completionThreshold="1"
+                android:enabled="false"
+                android:focusable="true"
+                android:hint="@string/registration_city"
+                android:inputType="text"
+                android:text="@string/city_name_shymkent"
+                tools:ignore="LabelFor" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/registration_fragment_phone_til"
+            style="@style/ModuleBase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/phone_hint"
+            app:endIconMode="clear_text"
+            app:layout_constraintTop_toBottomOf="@+id/registration_input_city_layout">
+
+            <kz.smartideagroup.pillikan.common.views.PhoneEditText
+                android:id="@+id/registration_fragment_phone_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:inputType="phone"
+                android:maxLines="1" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/registration_input_fio_layout"
+            style="@style/ModuleExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:endIconMode="clear_text"
+            app:errorIconDrawable="@null"
+            app:layout_constraintTop_toBottomOf="@+id/registration_fragment_phone_til">
+
+            <AutoCompleteTextView
+                android:id="@+id/registration_input_fio_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:completionThreshold="1"
+                android:hint="@string/registration_fio"
+                android:inputType="text"
+                android:maxLength="16"
+                tools:ignore="LabelFor" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/registration_input_promo_layout"
+            style="@style/ModuleExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:endIconMode="clear_text"
+            app:errorIconDrawable="@null"
+            app:layout_constraintTop_toBottomOf="@+id/registration_input_fio_layout">
+
+            <AutoCompleteTextView
+                android:id="@+id/registration_input_promo_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:completionThreshold="1"
+                android:hint="@string/registration_promo"
+                android:inputType="text"
+                tools:ignore="LabelFor" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/registration_input_password_layout"
+            style="@style/ModuleExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:endIconMode="password_toggle"
+            app:errorIconDrawable="@null"
+            app:layout_constraintTop_toBottomOf="@+id/registration_input_promo_layout">
+
+            <AutoCompleteTextView
+                android:maxLength="6"
+                android:id="@+id/registration_input_password_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:completionThreshold="1"
+                android:hint="@string/registration_sms"
+                android:inputType="numberPassword"
+                tools:ignore="LabelFor" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <TextView
+            android:id="@+id/restore_password_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:padding="@dimen/default_padding"
+            android:text="@string/authorization_send_sms"
+            android:textColor="@color/disable_text"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@+id/registration_input_password_layout" />
+
+        <TextView
+            android:id="@+id/registration_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_orange_button"
+            android:gravity="center"
+            android:padding="@dimen/default_padding"
+            android:text="@string/registration_send_sms"
+            android:textColor="@android:color/white"
+            app:layout_constraintTop_toBottomOf="@+id/restore_password_button" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/default_padding"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/authorization_suggest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:text="@string/sign_in_suggest"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/authorization_button"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/authorization_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sign_in_button"
+            android:textColor="@color/main_orange"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/authorization_suggest"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
