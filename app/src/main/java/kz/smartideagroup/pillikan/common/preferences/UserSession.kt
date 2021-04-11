@@ -1,6 +1,8 @@
 package kz.smartideagroup.pillikan.common.preferences
 
 import android.content.SharedPreferences
+import kz.smartideagroup.pillikan.common.utils.TOKEN_BEARER
+import kz.smartideagroup.pillikan.content.sign_in.models.SignInResponse
 
 class UserSession(private val prefs: SharedPreferences) {
 
@@ -75,6 +77,11 @@ class UserSession(private val prefs: SharedPreferences) {
     fun getTopics(): String? = prefs.getString(KEY_TOPICS, null)
     fun setTopics(topics: String) {
         prefs.edit().putString(KEY_TOPICS, topics).apply()
+    }
+
+    fun saveCurrentUser(user: SignInResponse?){
+        setIsAuthorize(true)
+        setAccessToken(TOKEN_BEARER + user?.token!!.accessToken)
     }
 
     fun clear() {

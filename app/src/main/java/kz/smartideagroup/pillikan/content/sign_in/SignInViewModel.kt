@@ -1,7 +1,6 @@
 package kz.smartideagroup.pillikan.content.sign_in
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -14,14 +13,11 @@ import retrofit2.Response
 class SignInViewModel(application: Application) : AndroidViewModel(application) {
 
     private var repository: SignInRepository = SignInRepository(application)
-
     val isError: MutableLiveData<String?> = MutableLiveData()
     val isSuccess: MutableLiveData<Boolean> = MutableLiveData()
     val isLoading: MutableLiveData<Boolean> = MutableLiveData()
-
     val isPhoneInvalid:  MutableLiveData<Boolean> = MutableLiveData()
     val isPasswordInvalid: MutableLiveData<Boolean> = MutableLiveData()
-
     val isSmsWasSend: MutableLiveData<Boolean> = MutableLiveData()
 
     suspend fun validateSmsData(phone: String){
@@ -90,5 +86,4 @@ class SignInViewModel(application: Application) : AndroidViewModel(application) 
     private fun <T> handleErrorBody(response: Response<T>) {
         isError.postValue(UtilsObject.handleErrorMessage(response))
     }
-
 }

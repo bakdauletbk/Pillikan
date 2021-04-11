@@ -13,7 +13,7 @@
 
     <!--Authorization-->
     <string name="authorization_login">Логин</string>
-    <string name="authorization_password">Пароль</string>
+    <string name="authorization_password">Секретный код</string>
     <string name="authorization_sms">СМС-код</string>
     <string name="authorization_confirm">Войти</string>
     <string name="authorization_send_sms">Вход по СМС</string>
@@ -56,5 +56,10 @@
     <string name="only_shymkent_text">В данный момент, мы работаем только в г.Шымкент. Новые города уже скоро!</string>
     <string name="error_wrong_fio">Недопустимое имя</string>
     <string name="success_registration_text">Вы зарегистрированы! Используйте СМС код как пароль для входа.</string>
+    <string name="nav_home">Главная</string>
+    <string name="nav_cabinet">Личный кабинет</string>
+    <string name="nav_bonuses">Бонусы</string>
+    <string name="welcome_new_partners">Новые партнеры</string>
+    <string name="see_more_items">Посмотреть полный список</string>
 
 </resources>

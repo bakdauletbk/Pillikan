@@ -1,7 +1,7 @@
 package kz.smartideagroup.pillikan.content.sign_in
 
 import android.app.Application
-import kz.smartideagroup.pillikan.common.remote.BaseRepository
+import kz.smartideagroup.pillikan.common.base_vmmv.BaseRepository
 import kz.smartideagroup.pillikan.content.sign_in.models.SignInRequest
 import kz.smartideagroup.pillikan.content.sign_in.models.SignInResponse
 import retrofit2.Response
@@ -20,8 +20,8 @@ class SignInRepository(application: Application): BaseRepository(application) {
         return networkService.sendSMS(phone, applicationVersion)
     }
 
-    suspend fun saveCurrentUserPreferences(currentUser: Response<SignInResponse>) {
-        userSession.setIsAuthorize(true)
+    fun saveCurrentUserPreferences(currentUser: Response<SignInResponse>) {
+        userSession.saveCurrentUser(currentUser.body())
     }
 
 }

@@ -65,7 +65,7 @@ fun String.validatePromo(): Boolean {
 }
 
 fun String.validateFullName(): Boolean {
-    if (length >= MIN_LENGTH_FIVE) {
+    if (length >= MIN_LENGTH_THREE) {
         return true
     }
     return false

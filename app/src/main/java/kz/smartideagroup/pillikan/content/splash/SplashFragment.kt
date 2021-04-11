@@ -1,7 +1,6 @@
 package kz.smartideagroup.pillikan.content.splash
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.coroutines.CoroutineScope
@@ -11,7 +10,8 @@ import kotlinx.coroutines.launch
 import kz.smartideagroup.pillikan.R
 import kz.smartideagroup.pillikan.common.base_interfaces.FragmentImpl
 import kz.smartideagroup.pillikan.common.utils.DELAY_THREE_SECOND
-import kz.smartideagroup.pillikan.common.views.BaseFragment
+import kz.smartideagroup.pillikan.common.base_vmmv.BaseFragment
+import java.lang.Exception
 
 
 class SplashFragment : BaseFragment(R.layout.fragment_splash), FragmentImpl {
@@ -25,10 +25,14 @@ class SplashFragment : BaseFragment(R.layout.fragment_splash), FragmentImpl {
     }
 
     override fun lets() {
-        setupViewModel()
-        setupListeners()
-        setupObservers()
-        initNetWorkChecker()
+        try {
+            setupViewModel()
+            setupListeners()
+            setupObservers()
+            initNetWorkChecker()
+        } catch (e: Exception) {
+            handleCrashAndReport(this.javaClass.name, e.message.toString())
+        }
     }
 
     override fun setupViewModel() {
@@ -46,13 +50,13 @@ class SplashFragment : BaseFragment(R.layout.fragment_splash), FragmentImpl {
 
     override fun setupObservers() {
         viewModel.isNetworkConnected.observe(viewLifecycleOwner, {
-            when(it){
+            when (it) {
                 true -> getIsAuthorized()
                 false -> showException(getString(R.string.error_unknown_body))
             }
         })
         viewModel.isAuthorized.observe(viewLifecycleOwner, {
-            when(it){
+            when (it) {
                 true -> navigateTo(R.id.action_splashFragment_to_homeFragment)
                 false -> navigateTo(R.id.action_splashFragment_to_onBoardingFragment)
             }
@@ -64,12 +68,12 @@ class SplashFragment : BaseFragment(R.layout.fragment_splash), FragmentImpl {
     }
 
     private suspend fun checkNetworkConnection() {
-        when(isFirstLaunch){
+        when (isFirstLaunch) {
             true -> firstLaunch()
         }
     }
 
-    private suspend fun firstLaunch(){
+    private suspend fun firstLaunch() {
         isFirstLaunch = false
         delay(DELAY_THREE_SECOND)
         getIsNetworkConnected()

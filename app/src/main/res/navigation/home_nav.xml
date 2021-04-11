@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_nav"
+    app:startDestination="@id/welcomeFragment">
+    <fragment
+        tools:layout="@layout/fragment_home_welcome"
+        android:id="@+id/welcomeFragment"
+        android:name="kz.smartideagroup.pillikan.content.home.welcome.WelcomeFragment"
+        android:label="WelcomeFragment" />
+</navigation>

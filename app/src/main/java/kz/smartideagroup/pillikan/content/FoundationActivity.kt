@@ -1,7 +1,7 @@
 package kz.smartideagroup.pillikan.content
 
 import android.os.Bundle
-import kz.smartideagroup.pillikan.common.views.BaseActivity
+import kz.smartideagroup.pillikan.common.base_vmmv.BaseActivity
 import kz.smartideagroup.pillikan.R
 
 class FoundationActivity: BaseActivity() {

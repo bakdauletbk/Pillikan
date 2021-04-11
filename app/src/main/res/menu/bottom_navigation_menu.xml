@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="none">
+
+        <item android:id="@+id/nav_home"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:title="@string/nav_home"/>
+
+        <item android:id="@+id/nav_cabinet"
+            android:icon="@drawable/ic_baseline_person_24"
+            android:title="@string/nav_cabinet"/>
+
+        <item android:id="@+id/nav_bonuses"
+            android:icon="@drawable/ic_baseline_animation_24"
+            android:title="@string/nav_bonuses"/>
+
+        <item android:id="@+id/nav_faq"
+            android:icon="@drawable/ic_baseline_contact_support_24"
+            android:title="Pillikan Гид"/>
+
+        <item android:id="@+id/nav_about_us"
+            android:icon="@drawable/ic_baseline_local_parking_24"
+            android:title="О нас"/>
+
+
+    </group>
+
+</menu>

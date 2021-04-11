@@ -1,6 +1,8 @@
 package kz.smartideagroup.pillikan.content.sign_up
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
@@ -11,11 +13,12 @@ import kz.smartideagroup.pillikan.R
 import kz.smartideagroup.pillikan.common.base_interfaces.FragmentImpl
 import kz.smartideagroup.pillikan.common.utils.SHYMKENT_CITY_ID
 import kz.smartideagroup.pillikan.common.utils.UtilsObject
-import kz.smartideagroup.pillikan.common.views.BaseFragment
+import kz.smartideagroup.pillikan.common.base_vmmv.BaseFragment
 import kz.smartideagroup.pillikan.common.views.viewBinding
 import kz.smartideagroup.pillikan.content.sign_up.models.SignUpRequest
 import kz.smartideagroup.pillikan.databinding.FragmentSignUpBinding
 import org.jetbrains.anko.sdk27.coroutines.onClick
+import java.lang.Exception
 
 class SignUpFragment : BaseFragment(R.layout.fragment_sign_up), FragmentImpl {
 
@@ -29,9 +32,13 @@ class SignUpFragment : BaseFragment(R.layout.fragment_sign_up), FragmentImpl {
     }
 
     override fun lets() {
-        setupViewModel()
-        setupListeners()
-        setupObservers()
+        try {
+            setupViewModel()
+            setupListeners()
+            setupObservers()
+        } catch (e: Exception) {
+            handleCrashAndReport(this.javaClass.name, e.message.toString())
+        }
     }
 
     override fun setupViewModel() {
@@ -39,6 +46,22 @@ class SignUpFragment : BaseFragment(R.layout.fragment_sign_up), FragmentImpl {
     }
 
     override fun setupListeners() {
+        binding.registrationFragmentPhoneValue.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                binding.registrationFragmentPhoneTil.error = null
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
+        binding.registrationInputPasswordValue.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                binding.registrationInputPasswordLayout.error = null
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
         binding.authorizationButton.onClick {
             activity?.onBackPressed()
         }
@@ -73,6 +96,7 @@ class SignUpFragment : BaseFragment(R.layout.fragment_sign_up), FragmentImpl {
         })
 
         viewModel.isError.observe(viewLifecycleOwner, {
+            handleCrashAndReport(this.javaClass.name, it.toString())
             when (it == null) {
                 true -> showException(getString(R.string.unknown))
                 false -> showException(it)

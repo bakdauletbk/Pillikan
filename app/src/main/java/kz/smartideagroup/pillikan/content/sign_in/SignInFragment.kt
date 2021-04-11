@@ -1,23 +1,26 @@
 package kz.smartideagroup.pillikan.content.sign_in
 
-import android.content.ActivityNotFoundException
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
+import android.app.Activity
+import android.content.*
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import androidx.activity.addCallback
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.gms.auth.api.phone.SmsRetriever
+import com.google.android.gms.common.api.CommonStatusCodes
+import com.google.android.gms.common.api.Status
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kz.smartideagroup.pillikan.R
 import kz.smartideagroup.pillikan.common.base_interfaces.FragmentImpl
+import kz.smartideagroup.pillikan.common.base_vmmv.BaseFragment
 import kz.smartideagroup.pillikan.common.utils.SIGN_IN_TYPE_PASS
 import kz.smartideagroup.pillikan.common.utils.SIGN_IN_TYPE_SMS
-import kz.smartideagroup.pillikan.common.views.BaseFragment
+import kz.smartideagroup.pillikan.common.utils.SMS_CONSENT_REQUEST
+import kz.smartideagroup.pillikan.common.utils.UtilsObject
 import kz.smartideagroup.pillikan.common.views.viewBinding
 import kz.smartideagroup.pillikan.databinding.FragmentSignInBinding
 import org.jetbrains.anko.sdk27.coroutines.onClick
@@ -34,10 +37,17 @@ class SignInFragment : BaseFragment(R.layout.fragment_sign_in), FragmentImpl {
     }
 
     override fun lets() {
-        setupViewModel()
-        setupListeners()
-        setupObservers()
+        try {
+            setupViewModel()
+            setupListeners()
+            setupObservers()
+            setupUserPhoneNumber()
+            setupSmsReceiver()
+        } catch (e: Exception) {
+            handleCrashAndReport(this.javaClass.name, e.message.toString())
+        }
     }
+
 
     override fun setupViewModel() {
         viewModel = ViewModelProvider(this).get(SignInViewModel::class.java)
@@ -80,6 +90,7 @@ class SignInFragment : BaseFragment(R.layout.fragment_sign_in), FragmentImpl {
         })
 
         viewModel.isError.observe(viewLifecycleOwner, {
+            handleCrashAndReport(this.javaClass.name, it.toString())
             when (it == null) {
                 true -> showException(getString(R.string.unknown))
                 false -> showException(it)
@@ -113,7 +124,9 @@ class SignInFragment : BaseFragment(R.layout.fragment_sign_in), FragmentImpl {
             val phone = binding.authorizationFragmentPhoneValue.text.toString()
             when (it) {
                 true -> {
+                    clearPreviousPassword()
                     confirmOfSmsReceipt(phone = phone)
+                    waitAndAutoFillSmsCode()
                 }
                 false -> {
                     showException(
@@ -122,6 +135,31 @@ class SignInFragment : BaseFragment(R.layout.fragment_sign_in), FragmentImpl {
                 }
             }
         })
+    }
+
+    private fun setupUserPhoneNumber() {
+        val currentUserPhoneNumber: String? =
+            UtilsObject.getCurrentUserPhoneNumber(requireContext())
+        when (!currentUserPhoneNumber.isNullOrEmpty()) {
+            true -> {
+                binding.authorizationFragmentPhoneValue.setText(currentUserPhoneNumber)
+            }
+        }
+    }
+
+    private fun setupSmsReceiver() {
+        val intentFilter = IntentFilter(SmsRetriever.SMS_RETRIEVED_ACTION)
+        requireActivity().registerReceiver(smsVerificationReceiver, intentFilter)
+    }
+
+
+    private fun clearPreviousPassword() {
+        binding.authorizationInputPasswordLayout.error = null
+        binding.authorizationInputPasswordValue.text.clear()
+    }
+
+    private fun waitAndAutoFillSmsCode() {
+        SmsRetriever.getClient(requireActivity()).startSmsUserConsent(null)
     }
 
     private fun confirmOfSmsReceipt(phone: String) {
@@ -150,12 +188,12 @@ class SignInFragment : BaseFragment(R.layout.fragment_sign_in), FragmentImpl {
         }
     }
 
-    private fun changeSignInTypeToPass(){
+    private fun changeSignInTypeToPass() {
         signInType = SIGN_IN_TYPE_PASS
         binding.authTypeChangeButton.setText(getString(R.string.sign_in_type_sms))
     }
 
-    private fun changeSignInTypeToSms(){
+    private fun changeSignInTypeToSms() {
         signInType = SIGN_IN_TYPE_SMS
         binding.authTypeChangeButton.setText(getString(R.string.sign_in_type_password))
         validateSmsData()
@@ -171,6 +209,46 @@ class SignInFragment : BaseFragment(R.layout.fragment_sign_in), FragmentImpl {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when(requestCode){
+            SMS_CONSENT_REQUEST -> {
+                when (resultCode == Activity.RESULT_OK) {
+                    true -> {
+                        val message = data!!.getStringExtra(SmsRetriever.EXTRA_SMS_MESSAGE)
+                        binding.authorizationInputPasswordValue.setText(
+                            message!!.split(":".toRegex()).toTypedArray()[1].trim { it <= ' ' })
+                        validateAuthData()
+                    }
+                }
+            }
+        }
+    }
+
+    private val smsVerificationReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            if (SmsRetriever.SMS_RETRIEVED_ACTION == intent.action) {
+                val extras = intent.extras
+                val smsRetrieverStatus = extras!![SmsRetriever.EXTRA_STATUS] as Status?
+                when (smsRetrieverStatus!!.statusCode) {
+                    CommonStatusCodes.SUCCESS -> {
+                        val consentIntent =
+                            extras.getParcelable<Intent>(SmsRetriever.EXTRA_CONSENT_INTENT)
+                        try {
+                            startActivityForResult(
+                                consentIntent,
+                                SMS_CONSENT_REQUEST
+                            )
+                        } catch (e: ActivityNotFoundException) {
+                        }
+                    }
+                    CommonStatusCodes.TIMEOUT -> {
+                    }
+                }
+            }
         }
     }
 

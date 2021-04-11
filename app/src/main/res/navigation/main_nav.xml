@@ -5,7 +5,6 @@
     android:id="@+id/bottom_nav"
     app:startDestination="@id/splashFragment">
 
-
     <fragment
         android:id="@+id/splashFragment"
         android:name="kz.smartideagroup.pillikan.content.splash.SplashFragment"
@@ -28,9 +27,9 @@
     </fragment>
 
     <fragment
-        tools:layout="@layout/fragment_home"
+        tools:layout="@layout/fragment_foundation_home"
         android:id="@+id/homeFragment"
-        android:name="kz.smartideagroup.pillikan.content.home.HomeFragment"
+        android:name="kz.smartideagroup.pillikan.content.home.HomeFoundationFragment"
         android:label="HomeFragment" />
 
     <fragment

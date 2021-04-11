@@ -1,4 +1,4 @@
-package kz.smartideagroup.pillikan.common.views
+package kz.smartideagroup.pillikan.common.base_vmmv
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
@@ -14,11 +14,12 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import kotlinx.android.synthetic.main.custom_exception_dialog.view.*
 import kotlinx.android.synthetic.main.custom_success_dialog.view.*
-import kotlinx.android.synthetic.main.custom_suggest_dialog.view.*
 import kotlinx.android.synthetic.main.custom_suggest_dialog.view.dialog_suggest_close
 import kotlinx.android.synthetic.main.custom_suggest_dialog.view.dialog_suggest_message
 import kz.smartideagroup.pillikan.R
 import kz.smartideagroup.pillikan.common.services.VibrateService
+import kz.smartideagroup.pillikan.common.views.CustomProgressDialog
+import kz.smartideagroup.pillikan.content.FoundationActivity
 import org.jetbrains.anko.sdk27.coroutines.onClick
 
 
@@ -132,6 +133,11 @@ open class BaseFragment(val layout: Int) : Fragment() {
             VibrateService::class.java
         )
         activity?.startService(intentVibrate)
+    }
+
+    fun handleCrashAndReport(action: String, extraData: String = " ", level: Int = 1){
+        val activity = requireActivity() as FoundationActivity
+        activity.regNewCrash(action, extraData, level)
     }
 
 

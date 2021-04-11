@@ -130,17 +130,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            app:endIconMode="clear_text"
+            app:endIconMode="password_toggle"
             app:errorIconDrawable="@null"
             app:layout_constraintTop_toBottomOf="@+id/registration_input_promo_layout">
 
             <AutoCompleteTextView
+                android:maxLength="6"
                 android:id="@+id/registration_input_password_value"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:completionThreshold="1"
                 android:hint="@string/registration_sms"
-                android:inputType="text"
+                android:inputType="numberPassword"
                 tools:ignore="LabelFor" />
 
 

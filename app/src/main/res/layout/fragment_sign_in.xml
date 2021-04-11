@@ -63,13 +63,13 @@
             app:layout_constraintTop_toBottomOf="@+id/authorization_fragment_phone_til">
 
             <AutoCompleteTextView
-                android:maxLength="16"
+                android:maxLength="10"
                 android:id="@+id/authorization_input_password_value"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:completionThreshold="1"
                 android:hint="@string/authorization_password"
-                android:inputType="textPassword"
+                android:inputType="numberPassword"
                 tools:ignore="LabelFor" />
 
 

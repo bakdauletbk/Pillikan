@@ -7,12 +7,12 @@ import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.on_boarding_fragment.*
 import kz.smartideagroup.pillikan.R
 import kz.smartideagroup.pillikan.common.base_interfaces.FragmentImpl
-import kz.smartideagroup.pillikan.common.views.BaseFragment
+import kz.smartideagroup.pillikan.common.base_vmmv.BaseFragment
 import kz.smartideagroup.pillikan.common.views.viewBinding
 import kz.smartideagroup.pillikan.databinding.OnBoardingFragmentBinding
 import org.jetbrains.anko.sdk27.coroutines.onClick
 
-class OnBoardingFragment: BaseFragment(R.layout.on_boarding_fragment), FragmentImpl {
+class OnBoardingFragment : BaseFragment(R.layout.on_boarding_fragment), FragmentImpl {
 
     private val binding by viewBinding(OnBoardingFragmentBinding::bind)
     private var isFirstOnBackPressed = true
@@ -23,8 +23,12 @@ class OnBoardingFragment: BaseFragment(R.layout.on_boarding_fragment), FragmentI
     }
 
     override fun lets() {
-        setupViewPagerIndicators()
-        setupListeners()
+        try {
+            setupViewPagerIndicators()
+            setupListeners()
+        } catch (e: Exception) {
+            handleCrashAndReport(this.javaClass.name, e.message.toString())
+        }
     }
 
     override fun setupObservers() {}
@@ -32,7 +36,7 @@ class OnBoardingFragment: BaseFragment(R.layout.on_boarding_fragment), FragmentI
 
     private fun setupViewPagerIndicators() {
         binding.onBoardingFragmentViewPager.adapter = OnBoardingPagerAdapter()
-        TabLayoutMediator(on_boarding_fragment_tab_layout,on_boarding_fragment_view_pager)
+        TabLayoutMediator(on_boarding_fragment_tab_layout, on_boarding_fragment_view_pager)
         { _, _ -> }.attach()
     }
 
@@ -45,14 +49,14 @@ class OnBoardingFragment: BaseFragment(R.layout.on_boarding_fragment), FragmentI
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requireActivity().onBackPressedDispatcher.addCallback(this) {
-            when(isFirstOnBackPressed){
+            when (isFirstOnBackPressed) {
                 true -> applicationFinishNotify()
                 false -> requireActivity().finish()
             }
         }
     }
 
-    private fun applicationFinishNotify(){
+    private fun applicationFinishNotify() {
         showLongToast(getString(R.string.confirm_finish))
         isFirstOnBackPressed = false
     }
