@@ -10,8 +10,6 @@ import retrofit2.http.*
 
 interface NetworkService {
 
-
-
     @POST(EndPoints.SIGN_IN)
     suspend fun signIn(
         @Header("appver") applicationVersion: String,
@@ -39,7 +37,6 @@ interface NetworkService {
         @Body crashBody: CrashBody
     ): Response<Any?>
 
-
     @POST(EndPoints.SIGN_UP_SMS)
     suspend fun sendSMStoSignUp(
         @Header("username") phone: String,
@@ -62,7 +59,4 @@ interface NetworkService {
         @Header("appver") applicationVersion: String,
         @Header("Content-Type") contentType: String,
     ): Response<BannerListResponse>
-
-
-
 }

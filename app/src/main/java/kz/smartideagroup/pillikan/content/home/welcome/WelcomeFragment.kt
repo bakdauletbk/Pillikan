@@ -4,14 +4,18 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.addCallback
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kz.smartideagroup.pillikan.R
 import kz.smartideagroup.pillikan.common.base_interfaces.FragmentImpl
 import kz.smartideagroup.pillikan.common.base_vmmv.BaseFragment
+import kz.smartideagroup.pillikan.common.utils.ApplicationPreferences
 import kz.smartideagroup.pillikan.common.views.viewBinding
 import kz.smartideagroup.pillikan.content.home.welcome.adapters.BannersAdapter
+import kz.smartideagroup.pillikan.content.home.welcome.adapters.MainCategoriesAdapter
 import kz.smartideagroup.pillikan.content.home.welcome.models.BannerModel
 import kz.smartideagroup.pillikan.databinding.FragmentHomeWelcomeBinding
 import java.lang.Exception
@@ -21,6 +25,7 @@ class WelcomeFragment : BaseFragment(R.layout.fragment_home_welcome), FragmentIm
     private lateinit var viewModel: WelcomeViewModel
     private val binding by viewBinding(FragmentHomeWelcomeBinding::bind)
     private val adapter: BannersAdapter = BannersAdapter(this)
+    private val categoryAdapter: MainCategoriesAdapter = MainCategoriesAdapter(this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -33,13 +38,13 @@ class WelcomeFragment : BaseFragment(R.layout.fragment_home_welcome), FragmentIm
             setupViewModel()
             setupListeners()
             setupObservers()
-            setupRecyclerView()
-            requestBannersItem()
+            setupRecyclerViews()
+            setupBannersItem()
+            setupMainCategories()
         } catch (e: Exception) {
             handleCrashAndReport(this.javaClass.name, e.message.toString())
         }
     }
-
 
     override fun setupViewModel() {
         viewModel = ViewModelProvider(this).get(WelcomeViewModel::class.java)
@@ -71,14 +76,22 @@ class WelcomeFragment : BaseFragment(R.layout.fragment_home_welcome), FragmentIm
         })
     }
 
-    private fun setupRecyclerView() {
+    private fun setupRecyclerViews() {
         binding.welcomeBannersRecyclerView.adapter = adapter
+        binding.mainCategoriesContainerRecyclerView.adapter = categoryAdapter
+        binding.mainCategoriesContainerRecyclerView.layoutManager =
+            LinearLayoutManager(requireContext())
+
     }
 
-    private fun requestBannersItem() {
+    private fun setupBannersItem() {
         CoroutineScope(Dispatchers.IO).launch {
             viewModel.getSliderItems()
         }
+    }
+
+    private fun setupMainCategories() {
+        categoryAdapter.addCategoryList(ApplicationPreferences.getMainCategories(requireContext()))
     }
 
     private fun initBannerItems(bannerItems: List<BannerModel>) {

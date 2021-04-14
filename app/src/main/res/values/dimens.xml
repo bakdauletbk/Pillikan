@@ -18,4 +18,14 @@
     <dimen name="banners_recycler_height">150dp</dimen>
     <dimen name="slider_corners_radius">11dp</dimen>
     <dimen name="slider_card_elevation">1dp</dimen>
+    <dimen name="category_width">75dp</dimen>
+    <dimen name="null_dp">0dp</dimen>
+    <dimen name="category_corner_radius">12dp</dimen>
+    <dimen name="category_card_elevation">3dp</dimen>
+    <dimen name="category_size">40dp</dimen>
+    <dimen name="category_inner_radius">10dp</dimen>
+    <dimen name="dimens_ten">10dp</dimen>
+    <dimen name="text_middle_11">11sp</dimen>
+    <dimen name="default_padding_4dp">4dp</dimen>
+    <dimen name="default_padding_2dp">2dp</dimen>
 </resources>

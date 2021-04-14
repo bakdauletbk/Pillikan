@@ -61,5 +61,12 @@
     <string name="nav_bonuses">Бонусы</string>
     <string name="welcome_new_partners">Новые партнеры</string>
     <string name="see_more_items">Посмотреть полный список</string>
+    <string name="cat_eat">Доставка</string>
+
+    <!--Categories-->
+    <string name="main_category_qr">Pillikan QR</string>
+    <string name="main_category_bus">Автобус</string>
+    <string name="main_category_delivery">Доставка</string>
+    <string name="main_category_taxi">Такси</string>
 
 </resources>

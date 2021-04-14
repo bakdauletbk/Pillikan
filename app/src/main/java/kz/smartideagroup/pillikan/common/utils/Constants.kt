@@ -22,3 +22,7 @@ const val NUMBER_ONE = 1
 const val DELAY_THREE_SECOND = 3000L
 const val BANNERS_DEFAULT_TYPE = 0
 const val BANNERS_IMAGE_CONTAINER = "slider/"
+const val CATEGORY_ID_QR = 1
+const val CATEGORY_ID_BUS = 2
+const val CATEGORY_ID_DELIVERY = 3
+const val CATEGORY_ID_TAXI = 4
