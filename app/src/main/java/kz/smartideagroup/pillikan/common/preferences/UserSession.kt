@@ -82,6 +82,9 @@ class UserSession(private val prefs: SharedPreferences) {
     fun saveCurrentUser(user: SignInResponse?){
         setIsAuthorize(true)
         setAccessToken(TOKEN_BEARER + user?.token!!.accessToken)
+        setUserName(user.profile.firstName)
+        setCityId(user.profile.city.id)
+        setBalance(user.user.balance.toInt())
     }
 
     fun clear() {

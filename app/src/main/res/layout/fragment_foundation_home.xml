@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="kz.smartideagroup.pillikan.content.home.HomeFoundationFragment"
-    >
+    tools:context="kz.smartideagroup.pillikan.content.home.HomeFoundationFragment">
 
     <fragment
         android:id="@+id/home_container"
@@ -16,30 +16,90 @@
         app:navGraph="@navigation/home_nav" />
 
     <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottomAppBar"
+        android:id="@+id/bottom_bar"
+        style="@style/Widget.MaterialComponents.BottomAppBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        style="@style/Widget.MaterialComponents.BottomAppBar"
         android:backgroundTint="@color/white"
         app:fabAlignmentMode="center"
-        app:fabCradleMargin="10dp"
-        app:fabCradleRoundedCornerRadius="10dp"
-        app:fabCradleVerticalOffset="5dp"
-        app:hideOnScroll="true"
-        app:navigationIcon="@drawable/ic_baseline_menu_24"/>
+        app:fabCradleRoundedCornerRadius="10dp">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="12dp">
+
+            <LinearLayout
+                android:id="@+id/viewProfile"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_light_blue_shape"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_avatar_bottom" />
+
+                <TextView
+                    android:id="@+id/tvUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:text="Name"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/text_middle_11"
+                    android:ellipsize="end"
+                    android:maxLines="1" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:id="@+id/viewBalance"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_light_orange_shape"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_cash_back" />
+
+                <TextView
+                    android:id="@+id/tvUserBalance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:text="100 000"
+                    android:textColor="@color/gold"
+                    android:textSize="@dimen/text_middle_11"
+                    android:ellipsize="end"
+                    android:maxLines="1"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </com.google.android.material.bottomappbar.BottomAppBar>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:background="@drawable/bg_orange_gradient_round"
+        android:id="@+id/fabQr"
+        app:srcCompat="@drawable/ic_qr_code"
+        app:tint="@android:color/white"
+        android:backgroundTint="@color/dark_orange"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:backgroundTint="@color/main_orange"
-        android:foregroundTint="@color/white"
-        android:tint="@color/white"
-        app:fabSize="normal"
-        app:layout_anchor="@id/bottomAppBar"
-        android:src="@drawable/ic_baseline_qr_code_24"/>
+        app:layout_anchor="@id/bottom_bar" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

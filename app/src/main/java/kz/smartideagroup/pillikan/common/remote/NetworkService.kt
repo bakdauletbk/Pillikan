@@ -2,9 +2,12 @@ package kz.smartideagroup.pillikan.common.remote
 
 import kz.smartideagroup.pillikan.common.crash_report.CrashBody
 import kz.smartideagroup.pillikan.content.home.welcome.models.BannerListResponse
+import kz.smartideagroup.pillikan.content.home.welcome.models.NewRetailListRequest
+import kz.smartideagroup.pillikan.content.home.welcome.models.NewRetailListResponse
 import kz.smartideagroup.pillikan.content.sign_in.models.SignInRequest
 import kz.smartideagroup.pillikan.content.sign_in.models.SignInResponse
 import kz.smartideagroup.pillikan.content.sign_up.models.SignUpRequest
+import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -59,4 +62,12 @@ interface NetworkService {
         @Header("appver") applicationVersion: String,
         @Header("Content-Type") contentType: String,
     ): Response<BannerListResponse>
+
+    @POST(EndPoints.NEW_RETAIL_LIST)
+    suspend fun getNewRetailList(
+        @Header("authorization") token: String?,
+        @Header("appver") appVer: String?,
+        @Header("Content-type") contentType: String?,
+        @Body newRetailListRequest: NewRetailListRequest?
+    ): Response<NewRetailListResponse>
 }

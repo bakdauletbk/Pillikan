@@ -53,8 +53,6 @@ class MainCategoriesAdapter(private var callback: WelcomeFragment) :
             newMarket.isVisible = category.isNew
         }
 
-
     }
-
 
 }

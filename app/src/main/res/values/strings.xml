@@ -68,5 +68,9 @@
     <string name="main_category_bus">Автобус</string>
     <string name="main_category_delivery">Доставка</string>
     <string name="main_category_taxi">Такси</string>
+    <string name="retail_title_placeholder">Название заведения</string>
+    <string name="retail_desc_placeholder">Адрес заведения</string>
+    <string name="retail_status_open">Открыто</string>
+    <string name="retail_status_close">Закрыто</string>
 
 </resources>

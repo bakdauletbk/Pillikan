@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:background="@color/white"
     tools:context=".content.home.welcome.WelcomeFragment">
 
@@ -11,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingVertical="@dimen/default_padding_small"
-        android:paddingHorizontal="@dimen/default_padding">
+        android:paddingHorizontal="@dimen/default_padding_small">
 
         <TextView
             android:textSize="24sp"
@@ -81,7 +83,7 @@
             android:id="@+id/show_more_partners"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/default_padding"
+            android:layout_marginTop="@dimen/default_padding"
             android:background="@drawable/bg_orange_button"
             android:gravity="center"
             android:paddingVertical="@dimen/default_padding"
@@ -89,8 +91,13 @@
             android:textColor="@color/white"
             app:layout_constraintTop_toBottomOf="@+id/new_partners_recycler_view" />
 
+        <TextView
+            app:layout_constraintTop_toBottomOf="@+id/show_more_partners"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

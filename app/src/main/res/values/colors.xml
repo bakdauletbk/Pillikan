@@ -22,4 +22,31 @@
     <color name="delivery_end_color">#D32F2F</color>
     <color name="taxi_start_color">#FFAC67</color>
     <color name="taxi_end_color">#FF9800</color>
+
+    <color name="blue">#03A9F4</color>
+    <color name="light_blue">#E1F5FE</color>
+    <color name="light_orange">#FFF3E0</color>
+    <color name="gold">#FF9800</color>
+    <color name="yellow">#FFEB3B</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="light_red">#FFEBEE</color>
+    <color name="gray">#F3F5F5</color>
+    <color name="dark_gray">#767676</color>
+    <color name="darker_gray">#4D4D4D</color>
+    <color name="gray_comment">#7A7A7A</color>
+
+    <color name="green">#4CAF50</color>
+    <color name="light_green">#E8F5E9</color>
+    <color name="filled_star_color">#FFEB3B</color>
+    <color name="empty_star_color">#CDD0D0</color>
+    <color name="color_social_disabled">#EEEEEE</color>
+    <color name="color_insta">#FCE4EC</color>
+    <color name="color_fb">#E3F2FD</color>
+    <color name="color_whatsapp">#E8F5E9</color>
+    <color name="color_telegram">#E1F5FE</color>
+    <color name="color_youtube">#FFEBEE</color>
+    <color name="color_vk">#D1E2F5</color>
+    <color name="color_web">#E0F7FA</color>
+    <color name="color_phone">#F1F8E9</color>
+
 </resources>

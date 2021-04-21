@@ -26,3 +26,7 @@ const val CATEGORY_ID_QR = 1
 const val CATEGORY_ID_BUS = 2
 const val CATEGORY_ID_DELIVERY = 3
 const val CATEGORY_ID_TAXI = 4
+const val CATEGORY_GRID_COUNT = 4
+
+const val PAGINATION_DEFAULT_PAGE = 0
+const val PAGINATION_DEFAULT_SIZE = 10
