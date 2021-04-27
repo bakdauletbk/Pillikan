@@ -10,7 +10,7 @@ class HomeFoundationViewModel(application: Application) : AndroidViewModel(appli
 
     private val repository = HomeFoundationRepository(application)
     val userName: MutableLiveData<String> = MutableLiveData()
-    val balance: MutableLiveData<Int> = MutableLiveData()
+    val balance: MutableLiveData<Float> = MutableLiveData()
 
     fun getUserName() {
         viewModelScope.launch {

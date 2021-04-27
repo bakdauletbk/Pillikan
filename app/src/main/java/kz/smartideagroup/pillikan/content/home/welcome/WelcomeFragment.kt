@@ -1,11 +1,13 @@
 package kz.smartideagroup.pillikan.content.home.welcome
 
+import android.nfc.tech.MifareUltralight.PAGE_SIZE
 import android.os.Bundle
 import android.view.View
 import androidx.activity.addCallback
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -23,9 +25,10 @@ import kz.smartideagroup.pillikan.content.home.welcome.adapters.RetailsAdapter
 import kz.smartideagroup.pillikan.content.home.welcome.models.BannerModel
 import kz.smartideagroup.pillikan.content.home.welcome.models.RetailModel
 import kz.smartideagroup.pillikan.databinding.FragmentHomeWelcomeBinding
-import java.lang.Exception
+import org.jetbrains.anko.sdk27.coroutines.onClick
 
-class WelcomeFragment : BaseFragment(R.layout.fragment_home_welcome), FragmentImpl {
+
+class WelcomeFragment : BaseFragment(R.layout.fragment_home_welcome, R.id.home_container), FragmentImpl {
 
     private lateinit var viewModel: WelcomeViewModel
     private val binding by viewBinding(FragmentHomeWelcomeBinding::bind)
@@ -58,6 +61,9 @@ class WelcomeFragment : BaseFragment(R.layout.fragment_home_welcome), FragmentIm
     }
 
     override fun setupListeners() {
+        binding.welcomePageNotificationButton.onClick {
+            navigateTo(R.id.action_welcomeFragment_to_notificationGroupFragment)
+        }
     }
 
     override fun setupObservers() {
@@ -92,12 +98,17 @@ class WelcomeFragment : BaseFragment(R.layout.fragment_home_welcome), FragmentIm
 
     private fun setupRecyclerViews() {
         binding.welcomeBannersRecyclerView.adapter = adapter
+
         binding.mainCategoriesContainerRecyclerView.adapter = categoryAdapter
         binding.mainCategoriesContainerRecyclerView.layoutManager =
             GridLayoutManager(activity?.applicationContext, CATEGORY_GRID_COUNT)
+
         binding.newPartnersRecyclerView.adapter = retailAdapter
-        binding.newPartnersRecyclerView.layoutManager = LinearLayoutManager(context)
+        val layoutManager = LinearLayoutManager(context)
+        binding.newPartnersRecyclerView.layoutManager = layoutManager
     }
+
+
 
     private fun loadNewRetails() {
         CoroutineScope(Dispatchers.IO).launch {

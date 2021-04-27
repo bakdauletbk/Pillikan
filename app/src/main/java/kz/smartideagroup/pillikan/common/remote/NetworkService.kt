@@ -1,6 +1,8 @@
 package kz.smartideagroup.pillikan.common.remote
 
 import kz.smartideagroup.pillikan.common.crash_report.CrashBody
+import kz.smartideagroup.pillikan.content.home.notifications.list.NotificationRequest
+import kz.smartideagroup.pillikan.content.home.notifications.list.NotificationsListResponse
 import kz.smartideagroup.pillikan.content.home.welcome.models.BannerListResponse
 import kz.smartideagroup.pillikan.content.home.welcome.models.NewRetailListRequest
 import kz.smartideagroup.pillikan.content.home.welcome.models.NewRetailListResponse
@@ -70,4 +72,18 @@ interface NetworkService {
         @Header("Content-type") contentType: String?,
         @Body newRetailListRequest: NewRetailListRequest?
     ): Response<NewRetailListResponse>
+
+    @POST(EndPoints.GET_SYSTEM_NOTIFICATION)
+    suspend fun getSystemNotification(
+        @Header("authorization") token: String?,
+        @Header("appver") appVer: String?,
+        @Body pageNumber: NotificationRequest
+    ): Response<NotificationsListResponse>
+
+    @POST(EndPoints.GET_PAYMENT_NOTIFICATION)
+    suspend fun getPaymentNotification(
+        @Header("authorization") token: String?,
+        @Header("appver") appVer: String?,
+        @Body pageNumber: NotificationRequest
+    ): Response<NotificationsListResponse>
 }

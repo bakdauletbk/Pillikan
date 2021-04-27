@@ -12,7 +12,7 @@ import kz.smartideagroup.pillikan.common.views.viewBinding
 import kz.smartideagroup.pillikan.databinding.OnBoardingFragmentBinding
 import org.jetbrains.anko.sdk27.coroutines.onClick
 
-class OnBoardingFragment : BaseFragment(R.layout.on_boarding_fragment), FragmentImpl {
+class OnBoardingFragment : BaseFragment(R.layout.on_boarding_fragment, R.id.main_container), FragmentImpl {
 
     private val binding by viewBinding(OnBoardingFragmentBinding::bind)
     private var isFirstOnBackPressed = true

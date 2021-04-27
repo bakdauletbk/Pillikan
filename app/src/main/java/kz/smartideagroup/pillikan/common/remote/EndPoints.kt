@@ -9,4 +9,7 @@ object EndPoints {
     const val GET_SLIDER_ITEMS = "api/a/slider/list"
     const val REG_NEW_CRASH = "/v1/error/add"
     const val NEW_RETAIL_LIST = "/api/a/cb/retail/find/all"
+    const val GET_SYSTEM_NOTIFICATION = "api/v1/notification/system"
+    const val GET_PAYMENT_NOTIFICATION = "api/v1/notification/cashback"
+
 }

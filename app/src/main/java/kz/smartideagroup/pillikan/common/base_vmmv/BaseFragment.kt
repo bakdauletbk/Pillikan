@@ -23,7 +23,7 @@ import kz.smartideagroup.pillikan.content.FoundationActivity
 import org.jetbrains.anko.sdk27.coroutines.onClick
 
 
-open class BaseFragment(val layout: Int) : Fragment() {
+open class BaseFragment(val layout: Int, val containerId: Int) : Fragment() {
 
     private val progressDialog = CustomProgressDialog()
     private var isDialogActive = false
@@ -42,7 +42,7 @@ open class BaseFragment(val layout: Int) : Fragment() {
 
     fun navigateTo(navDirections: Int) {
         hideLoading()
-        requireActivity().findNavController(R.id.main_container)
+        requireActivity().findNavController(containerId)
             .navigate(navDirections)
     }
 
@@ -110,6 +110,7 @@ open class BaseFragment(val layout: Int) : Fragment() {
     }
 
     fun showException(message: String) {
+        handleCrashAndReport(requireActivity().javaClass.toString(), message, 2)
         hideLoading()
         activateVibrate()
         val mDialogView = LayoutInflater.from(requireContext()).inflate(

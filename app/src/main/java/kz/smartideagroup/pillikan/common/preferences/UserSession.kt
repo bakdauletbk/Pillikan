@@ -49,9 +49,9 @@ class UserSession(private val prefs: SharedPreferences) {
         prefs.edit().putString(KEY_ID, id.toString()).apply()
     }
 
-    fun getBalance(): Int = prefs.getInt(KEY_BALANCE, 0)
-    fun setBalance(balance: Int) {
-        prefs.edit().putInt(KEY_ID, balance).apply()
+    fun getBalance(): Float = prefs.getFloat(KEY_BALANCE, 0f)
+    fun setBalance(balance: Float) {
+        prefs.edit().putFloat(KEY_BALANCE, balance).apply()
     }
 
     fun getCityId(): Int = prefs.getInt(KEY_CITY_ID, 0)
@@ -82,9 +82,9 @@ class UserSession(private val prefs: SharedPreferences) {
     fun saveCurrentUser(user: SignInResponse?){
         setIsAuthorize(true)
         setAccessToken(TOKEN_BEARER + user?.token!!.accessToken)
-        setUserName(user.profile.firstName)
+        setUserName(user.user.username)
         setCityId(user.profile.city.id)
-        setBalance(user.user.balance.toInt())
+        setBalance(user.user.balance.toFloat())
     }
 
     fun clear() {

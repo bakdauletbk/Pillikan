@@ -25,7 +25,7 @@ import kz.smartideagroup.pillikan.common.views.viewBinding
 import kz.smartideagroup.pillikan.databinding.FragmentSignInBinding
 import org.jetbrains.anko.sdk27.coroutines.onClick
 
-class SignInFragment : BaseFragment(R.layout.fragment_sign_in), FragmentImpl {
+class SignInFragment : BaseFragment(R.layout.fragment_sign_in, R.id.main_container), FragmentImpl {
 
     private lateinit var viewModel: SignInViewModel
     private val binding by viewBinding(FragmentSignInBinding::bind)

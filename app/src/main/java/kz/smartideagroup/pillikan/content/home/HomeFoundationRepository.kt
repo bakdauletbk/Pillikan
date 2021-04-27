@@ -9,7 +9,7 @@ class HomeFoundationRepository(application: Application): BaseRepository(applica
         return userSession.getUserName().toString()
     }
 
-    fun getUserBalance(): Int {
+    fun getUserBalance(): Float {
         return userSession.getBalance()
     }
 

@@ -4,26 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:fillViewport="true"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    android:background="@color/white"
     tools:context=".content.home.welcome.WelcomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingVertical="@dimen/default_padding_small"
-        android:paddingHorizontal="@dimen/default_padding_small">
+        android:paddingHorizontal="@dimen/default_padding_small"
+        android:paddingVertical="@dimen/default_padding_small">
 
         <TextView
-            android:textSize="24sp"
-            android:layout_marginBottom="@dimen/default_padding_small"
             android:id="@+id/welcome_page_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default_padding_small"
             android:paddingVertical="@dimen/default_padding_small"
             android:text="@string/nav_home"
             android:textColor="@color/title_text_color"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -51,6 +51,7 @@
             android:id="@+id/welcome_banners_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layoutAnimation="@anim/layout_animation"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintDimensionRatio="343:170"
@@ -62,13 +63,13 @@
             android:layout_height="0dp"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@+id/welcome_banners_recycler_view"/>
+            app:layout_constraintTop_toBottomOf="@+id/welcome_banners_recycler_view" />
 
         <TextView
-            android:layout_marginTop="@dimen/default_padding"
             android:id="@+id/welcome_page_new_partners_capture"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_padding"
             android:text="@string/welcome_new_partners"
             app:layout_constraintTop_toBottomOf="@+id/main_categories_container_recycler_view" />
 
@@ -77,6 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/default_padding"
+            android:layoutAnimation="@anim/layout_animation"
             app:layout_constraintTop_toBottomOf="@+id/welcome_page_new_partners_capture" />
 
         <TextView
@@ -92,9 +94,9 @@
             app:layout_constraintTop_toBottomOf="@+id/new_partners_recycler_view" />
 
         <TextView
-            app:layout_constraintTop_toBottomOf="@+id/show_more_partners"
             android:layout_width="match_parent"
-            android:layout_height="100dp"/>
+            android:layout_height="100dp"
+            app:layout_constraintTop_toBottomOf="@+id/show_more_partners" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
