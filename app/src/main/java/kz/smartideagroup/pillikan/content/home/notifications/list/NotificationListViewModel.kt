@@ -13,7 +13,8 @@ class NotificationListViewModel(application: Application): AndroidViewModel(appl
 
     val isError: MutableLiveData<String?> = MutableLiveData()
     val isLoading: MutableLiveData<Boolean> = MutableLiveData()
-    val notificationList: MutableLiveData<List<NotificationModel>> = MutableLiveData()
+    val systemNotificationList: MutableLiveData<List<NotificationModel>> = MutableLiveData()
+    val paymentNotificationList: MutableLiveData<List<NotificationModel>> = MutableLiveData()
     val totalElements: MutableLiveData<Int> = MutableLiveData()
 
     private val repository: NotificationRepository = NotificationRepository(application)
@@ -24,7 +25,7 @@ class NotificationListViewModel(application: Application): AndroidViewModel(appl
             val response = repository.getSystemNotification(notificationRequest)
             when (response.isSuccessful) {
                 true -> {
-                    notificationList.postValue(response.body()!!.list)
+                    systemNotificationList.postValue(response.body()!!.list)
                     totalElements.postValue(response.body()!!.totalCount)
                 }
                 false -> handleErrorBody(response)
@@ -38,7 +39,7 @@ class NotificationListViewModel(application: Application): AndroidViewModel(appl
             val response = repository.getPaymentsNotification(notificationRequest)
             when (response.isSuccessful) {
                 true -> {
-                    notificationList.postValue(response.body()!!.list)
+                    paymentNotificationList.postValue(response.body()!!.list)
                     totalElements.postValue(response.body()!!.totalCount)
                 }
                 false -> handleErrorBody(response)

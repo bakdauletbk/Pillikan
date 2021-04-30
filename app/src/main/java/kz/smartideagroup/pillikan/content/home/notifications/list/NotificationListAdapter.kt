@@ -20,10 +20,8 @@ class NotificationListAdapter(private var callback: NotificationListFragment) :
 
     fun addNotifications(notifications: List<NotificationModel>, imageId: Int) {
         this.imageId = imageId
-        val size = this.notifications.size
         this.notifications.addAll(notifications)
-        val sizeNew = this.notifications.size
-        notifyItemRangeChanged(size, sizeNew)
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificationHolder {

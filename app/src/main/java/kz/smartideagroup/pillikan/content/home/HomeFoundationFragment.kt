@@ -3,6 +3,7 @@ package kz.smartideagroup.pillikan.content.home
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import kz.smartideagroup.pillikan.R
 import kz.smartideagroup.pillikan.common.base_interfaces.FragmentImpl
 import kz.smartideagroup.pillikan.common.base_vmmv.BaseFragment
@@ -50,6 +51,10 @@ class HomeFoundationFragment : BaseFragment(R.layout.fragment_foundation_home, R
         }
         binding.balanceView.onClick {
             showOptionMenu(ApplicationPreferences.getBalanceOptions(requireContext()))
+        }
+
+        binding.fabQr.onClick {
+
         }
     }
 

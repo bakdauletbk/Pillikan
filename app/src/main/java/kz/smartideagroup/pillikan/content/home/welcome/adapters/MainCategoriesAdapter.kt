@@ -12,6 +12,7 @@ import kz.smartideagroup.pillikan.R
 import kz.smartideagroup.pillikan.common.utils.setGradient
 import kz.smartideagroup.pillikan.content.home.welcome.WelcomeFragment
 import kz.smartideagroup.pillikan.content.home.welcome.models.MainCategories
+import org.jetbrains.anko.sdk27.coroutines.onClick
 
 class MainCategoriesAdapter(private var callback: WelcomeFragment) :
     RecyclerView.Adapter<MainCategoriesAdapter.CategoriesHolder>() {
@@ -39,6 +40,7 @@ class MainCategoriesAdapter(private var callback: WelcomeFragment) :
     }
 
     class CategoriesHolder(root: View) : RecyclerView.ViewHolder(root) {
+        private val root = root
         private val background: LinearLayout = root.findViewById(R.id.category_item_main_view)
         private val icon: ImageView = root.findViewById(R.id.category_item_icon)
         private val title: TextView = root.findViewById(R.id.category_item_title)
@@ -51,6 +53,9 @@ class MainCategoriesAdapter(private var callback: WelcomeFragment) :
             icon.setImageDrawable(callback.requireContext().getDrawable(category.iconResource))
             title.text = category.title
             newMarket.isVisible = category.isNew
+            root.onClick {
+                callback.onCategoryClick(category.id)
+            }
         }
 
     }

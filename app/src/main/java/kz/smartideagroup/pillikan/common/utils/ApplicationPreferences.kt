@@ -1,6 +1,7 @@
 package kz.smartideagroup.pillikan.common.utils
 
 import android.content.Context
+import androidx.recyclerview.widget.LinearLayoutManager
 import kz.smartideagroup.pillikan.R
 import kz.smartideagroup.pillikan.content.home.notifications.group.NotificationGroupModel
 import kz.smartideagroup.pillikan.content.home.welcome.models.MainCategories
@@ -107,6 +108,14 @@ class ApplicationPreferences {
                 ), context.getString(R.string.payment_type_desc)
             )
             return listOf(systemNotifications, paymentNotifications)
+        }
+
+        fun getReversRecyclerView(context: Context): LinearLayoutManager{
+            val manager = LinearLayoutManager(context)
+            manager.stackFromEnd = true
+            manager.reverseLayout = true
+            manager.isSmoothScrollbarEnabled = true
+            return manager
         }
 
     }

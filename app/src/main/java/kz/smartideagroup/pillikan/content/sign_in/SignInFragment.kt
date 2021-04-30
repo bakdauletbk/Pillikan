@@ -57,6 +57,7 @@ class SignInFragment : BaseFragment(R.layout.fragment_sign_in, R.id.main_contain
         binding.authorizationFragmentPhoneValue.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                binding.authorizationConfirmButton.isEnabled = true
                 binding.authorizationFragmentPhoneTil.error = null
             }
 
@@ -65,6 +66,7 @@ class SignInFragment : BaseFragment(R.layout.fragment_sign_in, R.id.main_contain
         binding.authorizationInputPasswordValue.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                binding.authorizationConfirmButton.isEnabled = true
                 binding.authorizationInputPasswordLayout.error = null
             }
 
@@ -77,6 +79,7 @@ class SignInFragment : BaseFragment(R.layout.fragment_sign_in, R.id.main_contain
             changeSignInType()
         }
         binding.authorizationConfirmButton.onClick {
+            binding.authorizationConfirmButton.isEnabled = false
             validateAuthData()
         }
     }
@@ -85,7 +88,10 @@ class SignInFragment : BaseFragment(R.layout.fragment_sign_in, R.id.main_contain
         viewModel.isLoading.observe(viewLifecycleOwner, {
             when (it) {
                 true -> showLoading()
-                false -> hideLoading()
+                false -> {
+                    binding.authorizationConfirmButton.isEnabled = true
+                    hideLoading()
+                }
             }
         })
 
@@ -95,6 +101,7 @@ class SignInFragment : BaseFragment(R.layout.fragment_sign_in, R.id.main_contain
                 true -> showException(getString(R.string.unknown))
                 false -> showException(it)
             }
+            binding.authorizationConfirmButton.isEnabled = true
         })
 
         viewModel.isSuccess.observe(viewLifecycleOwner, {

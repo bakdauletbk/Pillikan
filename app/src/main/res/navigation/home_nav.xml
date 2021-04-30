@@ -17,6 +17,27 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_retailDetailsFragment"
+            app:destination="@id/retailDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_retailListFragment"
+            app:destination="@id/retailListFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_scannerFragment"
+            app:destination="@id/scannerFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
@@ -24,13 +45,6 @@
         android:name="kz.smartideagroup.pillikan.content.home.notifications.group.NotificationGroupFragment"
         android:label="NotificationGroupFragment"
         tools:layout="@layout/fragment_notifications_group">
-        <action
-            android:id="@+id/action_notificationGroupFragment_to_welcomeFragment"
-            app:destination="@id/welcomeFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_notificationGroupFragment_to_notificationListFragment"
             app:destination="@id/notificationListFragment"
@@ -47,14 +61,30 @@
         tools:layout="@layout/fragment_notification_list">
         <argument
             android:name="type"
-            app:argType="integer"
-            android:defaultValue="0" />
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/retailDetailsFragment"
+        android:name="kz.smartideagroup.pillikan.content.home.retails.details.RetailDetailsFragment"
+        android:label="RetailDetailsFragment"
+        tools:layout="@layout/fragment_retail_details" />
+    <fragment
+        android:id="@+id/retailListFragment"
+        android:name="kz.smartideagroup.pillikan.content.home.retails.list.RetailListFragment"
+        android:label="RetailListFragment"
+        tools:layout="@layout/fragment_all_retail_list">
         <action
-            android:id="@+id/action_notificationListFragment_to_notificationGroupFragment"
-            app:destination="@id/notificationGroupFragment"
+            android:id="@+id/action_retailListFragment_to_retailDetailsFragment"
+            app:destination="@id/retailDetailsFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
     </fragment>
+    <fragment
+        android:id="@+id/scannerFragment"
+        android:name="kz.smartideagroup.pillikan.content.home.scanner.ScannerFragment"
+        android:label="ScannerFragment"
+        tools:layout="@layout/fragment_qr_scanner" />
 </navigation>

@@ -14,10 +14,7 @@ import kotlinx.coroutines.launch
 import kz.smartideagroup.pillikan.R
 import kz.smartideagroup.pillikan.common.base_interfaces.FragmentImpl
 import kz.smartideagroup.pillikan.common.base_vmmv.BaseFragment
-import kz.smartideagroup.pillikan.common.utils.ApplicationPreferences
-import kz.smartideagroup.pillikan.common.utils.CATEGORY_GRID_COUNT
-import kz.smartideagroup.pillikan.common.utils.PAGINATION_DEFAULT_PAGE
-import kz.smartideagroup.pillikan.common.utils.PAGINATION_DEFAULT_SIZE
+import kz.smartideagroup.pillikan.common.utils.*
 import kz.smartideagroup.pillikan.common.views.viewBinding
 import kz.smartideagroup.pillikan.content.home.welcome.adapters.BannersAdapter
 import kz.smartideagroup.pillikan.content.home.welcome.adapters.MainCategoriesAdapter
@@ -64,6 +61,9 @@ class WelcomeFragment : BaseFragment(R.layout.fragment_home_welcome, R.id.home_c
         binding.welcomePageNotificationButton.onClick {
             navigateTo(R.id.action_welcomeFragment_to_notificationGroupFragment)
         }
+        binding.showMorePartners.onClick {
+            navigateTo(R.id.action_welcomeFragment_to_retailListFragment)
+        }
     }
 
     override fun setupObservers() {
@@ -98,11 +98,9 @@ class WelcomeFragment : BaseFragment(R.layout.fragment_home_welcome, R.id.home_c
 
     private fun setupRecyclerViews() {
         binding.welcomeBannersRecyclerView.adapter = adapter
-
         binding.mainCategoriesContainerRecyclerView.adapter = categoryAdapter
         binding.mainCategoriesContainerRecyclerView.layoutManager =
             GridLayoutManager(activity?.applicationContext, CATEGORY_GRID_COUNT)
-
         binding.newPartnersRecyclerView.adapter = retailAdapter
         val layoutManager = LinearLayoutManager(context)
         binding.newPartnersRecyclerView.layoutManager = layoutManager
@@ -119,6 +117,17 @@ class WelcomeFragment : BaseFragment(R.layout.fragment_home_welcome, R.id.home_c
     private fun setupBannersItem() {
         CoroutineScope(Dispatchers.IO).launch {
             viewModel.getSliderItems()
+        }
+    }
+
+    fun onCategoryClick(categoryId: Int){
+        when(categoryId){
+            CATEGORY_ID_QR -> {
+                navigateTo(R.id.action_welcomeFragment_to_retailListFragment)
+            }
+            CATEGORY_ID_BUS -> {
+                navigateTo(R.id.action_welcomeFragment_to_scannerFragment)
+            }
         }
     }
 

@@ -75,7 +75,6 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-
         <TextView
             app:layout_constraintRight_toRightOf="parent"
             android:id="@+id/auth_type_change_button"
@@ -87,13 +86,12 @@
             android:textColor="@color/disable_text"
             app:layout_constraintTop_toBottomOf="@+id/authorization_input_password_layout" />
 
-        <TextView
+        <Button
             android:id="@+id/authorization_confirm_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_orange_button"
             android:gravity="center"
-            android:padding="@dimen/default_padding"
             android:text="@string/authorization_confirm"
             android:textColor="@android:color/white"
             app:layout_constraintTop_toBottomOf="@+id/auth_type_change_button" />

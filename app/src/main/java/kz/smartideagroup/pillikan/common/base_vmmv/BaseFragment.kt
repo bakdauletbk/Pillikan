@@ -14,8 +14,12 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import kotlinx.android.synthetic.main.custom_exception_dialog.view.*
 import kotlinx.android.synthetic.main.custom_success_dialog.view.*
+import kotlinx.android.synthetic.main.custom_success_dialog.view.dialog_success_close
+import kotlinx.android.synthetic.main.custom_success_dialog.view.dialog_success_message
 import kotlinx.android.synthetic.main.custom_suggest_dialog.view.dialog_suggest_close
 import kotlinx.android.synthetic.main.custom_suggest_dialog.view.dialog_suggest_message
+import kotlinx.android.synthetic.main.static_error_alert.view.*
+import kotlinx.android.synthetic.main.static_success_alert.view.*
 import kz.smartideagroup.pillikan.R
 import kz.smartideagroup.pillikan.common.services.VibrateService
 import kz.smartideagroup.pillikan.common.views.CustomProgressDialog
@@ -75,7 +79,7 @@ open class BaseFragment(val layout: Int, val containerId: Int) : Fragment() {
         hideLoading()
         activateVibrate()
         val mDialogView = LayoutInflater.from(requireContext()).inflate(
-            R.layout.custom_suggest_dialog,
+            R.layout.static_success_alert,
             null
         )
         val mBuilder = AlertDialog.Builder(requireContext())
@@ -83,9 +87,9 @@ open class BaseFragment(val layout: Int, val containerId: Int) : Fragment() {
             .setCancelable(true)
         val mAlertDialog = mBuilder.show()
         mAlertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        mDialogView.dialog_suggest_message.text = message
-        mDialogView.dialog_suggest_close.text = actionButtonTitle
-        mDialogView.dialog_suggest_close.onClick {
+        mDialogView.dialog_success_message.text = message
+        mDialogView.dialog_success_close.text = actionButtonTitle
+        mDialogView.dialog_success_close.onClick {
             mAlertDialog.dismiss()
         }
     }
@@ -94,7 +98,7 @@ open class BaseFragment(val layout: Int, val containerId: Int) : Fragment() {
     fun showSuccess(message: String, actionButtonTitle: String? = null) {
         hideLoading()
         val mDialogView = LayoutInflater.from(requireContext()).inflate(
-            R.layout.custom_success_dialog,
+            R.layout.static_success_alert,
             null
         )
         val mBuilder = AlertDialog.Builder(requireContext())
@@ -114,7 +118,7 @@ open class BaseFragment(val layout: Int, val containerId: Int) : Fragment() {
         hideLoading()
         activateVibrate()
         val mDialogView = LayoutInflater.from(requireContext()).inflate(
-            R.layout.custom_exception_dialog,
+            R.layout.static_error_alert,
             null
         )
         val mBuilder = AlertDialog.Builder(requireContext())
@@ -122,8 +126,8 @@ open class BaseFragment(val layout: Int, val containerId: Int) : Fragment() {
             .setCancelable(false)
         val mAlertDialog = mBuilder.show()
         mAlertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        mDialogView.dialog_exception_message.text = message
-        mDialogView.dialog_exception_close.onClick {
+        mDialogView.dialog_error_message.text = message
+        mDialogView.dialog_error_close.onClick {
             mAlertDialog.dismiss()
         }
     }
