@@ -85,7 +85,7 @@ class SignUpFragment : BaseFragment(R.layout.fragment_sign_up, R.id.main_contain
                 message = getString(R.string.success_registration_text),
                 actionButtonTitle = getString(R.string.welcome_ok_text)
             )
-            navigateTo(R.id.action_signUpFragment_to_signInFragment)
+            requireActivity().onBackPressed()
         })
 
         viewModel.isLoading.observe(viewLifecycleOwner, {

@@ -51,7 +51,6 @@
             android:id="@+id/welcome_banners_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layoutAnimation="@anim/layout_animation"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintDimensionRatio="343:170"
@@ -62,6 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="horizontal"
+            android:layoutAnimation="@anim/layout_animation"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@+id/welcome_banners_recycler_view" />
 
@@ -81,14 +81,13 @@
             android:layoutAnimation="@anim/layout_animation"
             app:layout_constraintTop_toBottomOf="@+id/welcome_page_new_partners_capture" />
 
-        <TextView
+        <Button
             android:id="@+id/show_more_partners"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_padding"
             android:background="@drawable/bg_orange_button"
             android:gravity="center"
-            android:paddingVertical="@dimen/default_padding"
             android:text="@string/see_more_items"
             android:textColor="@color/white"
             app:layout_constraintTop_toBottomOf="@+id/new_partners_recycler_view" />

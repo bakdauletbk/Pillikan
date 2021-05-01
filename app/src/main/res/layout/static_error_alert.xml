@@ -1,54 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:padding="@dimen/default_padding"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:padding="@dimen/default_padding"
     app:cardCornerRadius="@dimen/default_retail_card_corner_radius"
     app:cardElevation="@dimen/default_retail_card_elevation">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <TextView
+            android:id="@+id/error_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="@dimen/default_padding"
             android:gravity="center"
-            android:textStyle="bold"
-            android:textSize="24sp"
-            android:textColor="@color/black"
             android:text="Что то пошло не так..."
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <ImageView
-            android:layout_gravity="center"
-            android:src="@drawable/ic_error"
+            android:id="@+id/image_error"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_error" />
 
 
         <TextView
             android:id="@+id/dialog_error_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="@dimen/default_padding"
             android:gravity="center"
-            android:text="Текст раз два три четыре пять шесть семья восемьТекст раз два три четыре пять шесть семья восемь"
+            android:text="Текст раз два три четыре пять шесть семья восемьТекст раз два три четыре пять шесть семья восемь" />
+
+        <TextView
+            android:id="@+id/dialog_error_close"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="@dimen/default_padding"
+            android:layout_marginBottom="@dimen/default_padding"
+            android:background="@drawable/bg_light_orange_button"
+            android:gravity="center"
+            android:padding="@dimen/default_padding"
+            android:text="Хорошо"
+            android:textColor="@color/white" />
+
+        <ImageView
+            android:layout_marginTop="@dimen/default_padding"
+            android:src="@drawable/ic_baseline_keyboard_arrow_down_24"
+            android:id="@+id/send_report_prepare"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default_padding"
+            android:gravity="center"/>
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/report_hint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:text="Сообщить разработчику об ошибке"/>
+
+
+        <EditText
+            android:gravity="left|top"
+            android:visibility="gone"
+            android:id="@+id/extra_data"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_margin="@dimen/default_padding"
+            android:background="@color/edit_bg_gray"
+            android:hint="Опишите проблему подробнее"
+            android:maxLength="255"
+            android:textColor="@color/black"
+            android:padding="@dimen/default_padding_small" />
+
+        <TextView
+            android:visibility="gone"
+            android:paddingHorizontal="@dimen/default_padding"
+            android:text="0/255"
+            android:layout_marginBottom="@dimen/default_padding"
+            android:gravity="end"
+            android:id="@+id/length_count"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-        <TextView
-            android:layout_gravity="center"
-            android:id="@+id/dialog_error_close"
+        <Button
+            android:visibility="gone"
             android:layout_marginHorizontal="@dimen/default_padding"
-            android:layout_marginBottom="@dimen/default_padding"
-            android:padding="@dimen/default_padding"
-            android:textColor="@color/white"
-            android:gravity="center"
-            android:text="Хорошо"
-            android:background="@drawable/bg_light_orange_button"
+            android:id="@+id/send_report_button"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default_padding"
+            android:text="Отправить"
+            android:textColor="@color/white" />
+
 
     </LinearLayout>
 

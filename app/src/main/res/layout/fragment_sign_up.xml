@@ -159,13 +159,12 @@
             android:visibility="invisible"
             app:layout_constraintTop_toBottomOf="@+id/registration_input_password_layout" />
 
-        <TextView
+        <Button
             android:id="@+id/registration_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_orange_button"
             android:gravity="center"
-            android:padding="@dimen/default_padding"
             android:text="@string/registration_send_sms"
             android:textColor="@android:color/white"
             app:layout_constraintTop_toBottomOf="@+id/restore_password_button" />
@@ -173,6 +172,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/authorization_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/default_padding"
@@ -180,25 +180,22 @@
 
         <TextView
             android:id="@+id/authorization_suggest"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="end"
+            android:gravity="center"
             android:text="@string/sign_in_suggest"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/authorization_button"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/authorization_button"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/sign_in_button"
+            android:gravity="center"
             android:textColor="@color/main_orange"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@+id/authorization_suggest"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/authorization_suggest"
+            />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

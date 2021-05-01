@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.addCallback
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,7 +26,8 @@ import kz.smartideagroup.pillikan.databinding.FragmentHomeWelcomeBinding
 import org.jetbrains.anko.sdk27.coroutines.onClick
 
 
-class WelcomeFragment : BaseFragment(R.layout.fragment_home_welcome, R.id.home_container), FragmentImpl {
+class WelcomeFragment : BaseFragment(R.layout.fragment_home_welcome, R.id.home_container),
+    FragmentImpl {
 
     private lateinit var viewModel: WelcomeViewModel
     private val binding by viewBinding(FragmentHomeWelcomeBinding::bind)
@@ -107,7 +109,6 @@ class WelcomeFragment : BaseFragment(R.layout.fragment_home_welcome, R.id.home_c
     }
 
 
-
     private fun loadNewRetails() {
         CoroutineScope(Dispatchers.IO).launch {
             viewModel.getNewRetailList(PAGINATION_DEFAULT_PAGE, PAGINATION_DEFAULT_SIZE)
@@ -120,13 +121,20 @@ class WelcomeFragment : BaseFragment(R.layout.fragment_home_welcome, R.id.home_c
         }
     }
 
-    fun onCategoryClick(categoryId: Int){
-        when(categoryId){
+    fun onCategoryClick(categoryId: Int) {
+        when (categoryId) {
             CATEGORY_ID_QR -> {
                 navigateTo(R.id.action_welcomeFragment_to_retailListFragment)
             }
             CATEGORY_ID_BUS -> {
                 navigateTo(R.id.action_welcomeFragment_to_scannerFragment)
+            }
+            CATEGORY_ID_TAXI -> {
+                navigateTo(R.id.action_welcomeFragment_to_taxiFragment)
+            }
+            CATEGORY_ID_DELIVERY -> {
+                requireActivity().findNavController(R.id.main_container)
+                    .navigate(R.id.deliveryFoundationFragment)
             }
         }
     }

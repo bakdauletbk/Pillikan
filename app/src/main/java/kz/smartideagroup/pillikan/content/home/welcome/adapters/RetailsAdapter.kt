@@ -53,7 +53,7 @@ class RetailsAdapter(private var callback: WelcomeFragment) :
         private val image: ImageView = root.findViewById(R.id.retail_image)
         private val title: TextView = root.findViewById(R.id.retail_title)
         private val desc: TextView = root.findViewById(R.id.retail_description)
-        private val cashBack: TextView = root.findViewById(R.id.retail_cash_back)
+        private val cashBack: TextView = root.findViewById(R.id.retail_cash_back_value)
         private val status: TextView = root.findViewById(R.id.retail_status)
         fun bind(
             retail: RetailModel,

@@ -197,12 +197,12 @@ class SignInFragment : BaseFragment(R.layout.fragment_sign_in, R.id.main_contain
 
     private fun changeSignInTypeToPass() {
         signInType = SIGN_IN_TYPE_PASS
-        binding.authTypeChangeButton.setText(getString(R.string.sign_in_type_sms))
+        binding.authTypeChangeButton.text = getString(R.string.sign_in_type_sms)
     }
 
     private fun changeSignInTypeToSms() {
         signInType = SIGN_IN_TYPE_SMS
-        binding.authTypeChangeButton.setText(getString(R.string.sign_in_type_password))
+        binding.authTypeChangeButton.text = getString(R.string.sign_in_type_password)
         validateSmsData()
     }
 

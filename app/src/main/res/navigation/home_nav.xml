@@ -9,55 +9,74 @@
         android:id="@+id/welcomeFragment"
         android:name="kz.smartideagroup.pillikan.content.home.welcome.WelcomeFragment"
         android:label="WelcomeFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"
         tools:layout="@layout/fragment_home_welcome">
         <action
             android:id="@+id/action_welcomeFragment_to_notificationGroupFragment"
-            app:destination="@id/notificationGroupFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:destination="@id/notificationGroupFragment" />
         <action
             android:id="@+id/action_welcomeFragment_to_retailDetailsFragment"
-            app:destination="@id/retailDetailsFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:destination="@id/retailDetailsFragment" />
         <action
             android:id="@+id/action_welcomeFragment_to_retailListFragment"
-            app:destination="@id/retailListFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:destination="@id/retailListFragment" />
         <action
             android:id="@+id/action_welcomeFragment_to_scannerFragment"
-            app:destination="@id/scannerFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:destination="@id/busFragment" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_volunteerFragment"
+            app:destination="@id/volunteerFragment" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_qrScannerFragment"
+            app:destination="@id/qrScannerFragment" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_aboutUsFragment"
+            app:destination="@id/aboutUsFragment" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_addABonusFragment"
+            app:destination="@id/addABonusFragment" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_faqFragment"
+            app:destination="@id/faqFragment" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_myCardsFragment"
+            app:destination="@id/myCardsFragment" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_paymentHistoryFragment"
+            app:destination="@id/paymentHistoryFragment" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_taxiFragment"
+            app:destination="@id/taxiFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/notificationGroupFragment"
         android:name="kz.smartideagroup.pillikan.content.home.notifications.group.NotificationGroupFragment"
         android:label="NotificationGroupFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"
         tools:layout="@layout/fragment_notifications_group">
         <action
             android:id="@+id/action_notificationGroupFragment_to_notificationListFragment"
-            app:destination="@id/notificationListFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:destination="@id/notificationListFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/notificationListFragment"
         android:name="kz.smartideagroup.pillikan.content.home.notifications.list.NotificationListFragment"
         android:label="NotificationListFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"
         tools:layout="@layout/fragment_notification_list">
         <argument
             android:name="type"
@@ -68,23 +87,113 @@
         android:id="@+id/retailDetailsFragment"
         android:name="kz.smartideagroup.pillikan.content.home.retails.details.RetailDetailsFragment"
         android:label="RetailDetailsFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"
         tools:layout="@layout/fragment_retail_details" />
     <fragment
         android:id="@+id/retailListFragment"
         android:name="kz.smartideagroup.pillikan.content.home.retails.list.RetailListFragment"
         android:label="RetailListFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"
         tools:layout="@layout/fragment_all_retail_list">
         <action
             android:id="@+id/action_retailListFragment_to_retailDetailsFragment"
-            app:destination="@id/retailDetailsFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:destination="@id/retailDetailsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/scannerFragment"
-        android:name="kz.smartideagroup.pillikan.content.home.scanner.ScannerFragment"
-        android:label="ScannerFragment"
-        tools:layout="@layout/fragment_qr_scanner" />
+        android:id="@+id/busFragment"
+        android:name="kz.smartideagroup.pillikan.content.home.bus.BusFragment"
+        android:label="BusFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"
+        tools:layout="@layout/fragment_bus" />
+
+    <fragment
+        android:id="@+id/qrScannerFragment"
+        android:name="kz.smartideagroup.pillikan.content.home.scanner.QrScannerFragment"
+        android:label="QrScannerFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"
+        tools:layout="@layout/fragment_scanner" />
+    <fragment
+        android:id="@+id/aboutUsFragment"
+        android:name="kz.smartideagroup.pillikan.content.home.about_us.AboutUsFragment"
+        android:label="AboutUsFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"
+        tools:layout="@layout/fragment_about_us" />
+    <fragment
+        android:id="@+id/addABonusFragment"
+        android:name="kz.smartideagroup.pillikan.content.home.add_a_bonus.AddABonusFragment"
+        android:label="AddABonusFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"
+        tools:layout="@layout/fragment_add_a_bonus" />
+    <fragment
+        android:id="@+id/faqFragment"
+        android:name="kz.smartideagroup.pillikan.content.home.faq.FaqFragment"
+        android:label="FaqFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"
+        tools:layout="@layout/fragment_faq" />
+    <fragment
+        android:id="@+id/myCardsFragment"
+        android:name="kz.smartideagroup.pillikan.content.home.my_cards.MyCardsFragment"
+        android:label="MyCardsFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"
+        tools:layout="@layout/fragment_my_cards" />
+    <fragment
+        android:id="@+id/paymentHistoryFragment"
+        android:name="kz.smartideagroup.pillikan.content.home.payment_history.PaymentHistoryFragment"
+        android:label="PaymentHistoryFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"
+        tools:layout="@layout/fragment_payment_history" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="kz.smartideagroup.pillikan.content.home.profile.ProfileFragment"
+        android:label="ProfileFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/volunteerFragment"
+        android:name="kz.smartideagroup.pillikan.content.home.volunteer.VolunteerFragment"
+        android:label="VolunteerFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"
+        tools:layout="@layout/fragment_volunteer" />
+    <fragment
+        android:id="@+id/taxiFragment"
+        android:name="kz.smartideagroup.pillikan.content.home.taxi.TaxiFragment"
+        android:label="TaxiFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"
+        tools:layout="@layout/fragment_taxi" />
 </navigation>

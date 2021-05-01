@@ -9,75 +9,83 @@
         android:id="@+id/splashFragment"
         android:name="kz.smartideagroup.pillikan.content.splash.SplashFragment"
         android:label="SplashFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"
         tools:layout="@layout/fragment_splash">
         <action
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
             android:id="@+id/action_splashFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
         <action
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
             android:id="@+id/action_splashFragment_to_onBoardingFragment"
             app:destination="@id/onBoardingFragment" />
     </fragment>
 
     <fragment
-        tools:layout="@layout/fragment_foundation_home"
         android:id="@+id/homeFragment"
         android:name="kz.smartideagroup.pillikan.content.home.HomeFoundationFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"
+        tools:layout="@layout/fragment_foundation_home">
+
+        <action
+            android:id="@+id/action_homeFragment_to_deliveryFoundationFragment"
+            app:destination="@id/deliveryFoundationFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/onBoardingFragment"
         android:name="kz.smartideagroup.pillikan.content.on_boarding.OnBoardingFragment"
         android:label="on_boarding_fragment"
-        tools:layout="@layout/on_boarding_fragment" >
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"
+        tools:layout="@layout/on_boarding_fragment">
         <action
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
             android:id="@+id/action_onBoardingFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
     </fragment>
     <fragment
-        tools:layout="@layout/fragment_sign_in"
         android:id="@+id/signInFragment"
         android:name="kz.smartideagroup.pillikan.content.sign_in.SignInFragment"
-        android:label="SignInFragment" >
+        android:label="SignInFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"
+        tools:layout="@layout/fragment_sign_in">
         <action
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
+
             android:id="@+id/action_signInFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
         <action
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
             android:id="@+id/action_signInFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
     </fragment>
 
     <fragment
-        tools:layout="@layout/fragment_sign_up"
         android:id="@+id/signUpFragment"
         android:name="kz.smartideagroup.pillikan.content.sign_up.SignUpFragment"
-        android:label="SignUpFragment" >
-        <action
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
-            android:id="@+id/action_signUpFragment_to_signInFragment"
-            app:destination="@id/signInFragment" />
-    </fragment>
+        android:label="SignUpFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"
+        tools:layout="@layout/fragment_sign_up" />
+    <fragment
+        android:id="@+id/deliveryFoundationFragment"
+        android:name="kz.smartideagroup.pillikan.content.delivery.DeliveryFoundationFragment"
+        android:label="DeliveryFoundationFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"
+        tools:layout="@layout/fragment_delivery_foundation" />
+
 
 </navigation>

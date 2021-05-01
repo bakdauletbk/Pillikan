@@ -56,6 +56,19 @@ class ApplicationPreferences {
             return categories
         }
 
+        fun getDestinationList(): HashMap<Int,Int>{
+            val list: HashMap<Int,Int> = HashMap()
+            list[MENU_HOME] = R.id.welcomeFragment
+            list[MENU_PROFILE] = R.id.profileFragment
+            list[MENU_BONUSES] = R.id.volunteerFragment
+            list[MENU_FAQ] = R.id.faqFragment
+            list[MENU_ABOUT_US] = R.id.aboutUsFragment
+            list[MENU_CARDS] = R.id.myCardsFragment
+            list[MENU_ADD_BALANCE] = R.id.addABonusFragment
+            list[MENU_PAYMENTS_HISTORY] = R.id.paymentHistoryFragment
+            return list
+        }
+
         fun getProfileOptions(context: Context): List<OptionItem> {
             val res = context.resources
             val home = OptionItem(MENU_HOME, res.getString(R.string.item_main), null, R.color.black)
@@ -117,6 +130,7 @@ class ApplicationPreferences {
             manager.isSmoothScrollbarEnabled = true
             return manager
         }
+
 
     }
 }
