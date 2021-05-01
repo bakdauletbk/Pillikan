@@ -1,4 +1,4 @@
-package kz.smartideagroup.pillikan.common.models
+package kz.smartideagroup.pillikan.common.pagination
 
 class Page<T> {
 

@@ -20,7 +20,7 @@ import kz.smartideagroup.pillikan.databinding.FragmentSignUpBinding
 import org.jetbrains.anko.sdk27.coroutines.onClick
 import java.lang.Exception
 
-class SignUpFragment : BaseFragment(R.layout.fragment_sign_up), FragmentImpl {
+class SignUpFragment : BaseFragment(R.layout.fragment_sign_up, R.id.main_container), FragmentImpl {
 
     private val binding by viewBinding(FragmentSignUpBinding::bind)
     private lateinit var viewModel: SignUpViewModel
@@ -85,7 +85,7 @@ class SignUpFragment : BaseFragment(R.layout.fragment_sign_up), FragmentImpl {
                 message = getString(R.string.success_registration_text),
                 actionButtonTitle = getString(R.string.welcome_ok_text)
             )
-            navigateTo(R.id.action_signUpFragment_to_signInFragment)
+            requireActivity().onBackPressed()
         })
 
         viewModel.isLoading.observe(viewLifecycleOwner, {

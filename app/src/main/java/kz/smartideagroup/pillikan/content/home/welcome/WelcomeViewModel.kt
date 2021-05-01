@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import kz.smartideagroup.pillikan.common.utils.UtilsObject
 import kz.smartideagroup.pillikan.content.home.welcome.models.BannerModel
+import kz.smartideagroup.pillikan.content.home.welcome.models.RetailModel
 import retrofit2.Response
 
 class WelcomeViewModel(application: Application): AndroidViewModel(application) {
@@ -15,6 +16,7 @@ class WelcomeViewModel(application: Application): AndroidViewModel(application) 
     val isError: MutableLiveData<String?> = MutableLiveData()
     val isLoading: MutableLiveData<Boolean> = MutableLiveData()
     val sliderItems: MutableLiveData<List<BannerModel>> = MutableLiveData()
+    val newRetailList: MutableLiveData<List<RetailModel>> = MutableLiveData()
 
     suspend fun getSliderItems() {
         viewModelScope.launch {
@@ -22,6 +24,16 @@ class WelcomeViewModel(application: Application): AndroidViewModel(application) 
             val response = repository.getSliderItems()
             when (response.isSuccessful) {
                 true -> sliderItems.postValue(response.body()!!.sliders)
+                false -> handleErrorBody(response)
+            }
+        }
+    }
+
+    suspend fun getNewRetailList(pageNumber: Int, size: Int){
+        viewModelScope.launch {
+            val response = repository.getNewRetailList(pageNumber, size)
+            when (response.isSuccessful) {
+                true -> newRetailList.postValue(response.body()!!.retailList)
                 false -> handleErrorBody(response)
             }
         }

@@ -60,6 +60,29 @@
     <string name="nav_cabinet">Личный кабинет</string>
     <string name="nav_bonuses">Бонусы</string>
     <string name="welcome_new_partners">Новые партнеры</string>
-    <string name="see_more_items">Посмотреть полный список</string>
+    <string name="see_more_items">Все партнеры</string>
+    <string name="cat_eat">Доставка</string>
+
+    <!--Categories-->
+    <string name="main_category_qr">Pillikan QR</string>
+    <string name="main_category_bus">Автобус</string>
+    <string name="main_category_delivery">Доставка</string>
+    <string name="main_category_taxi">Такси</string>
+    <string name="retail_title_placeholder">Название заведения</string>
+    <string name="retail_desc_placeholder">Адрес заведения</string>
+    <string name="retail_status_open">Открыто</string>
+    <string name="retail_status_close">Закрыто</string>
+    <string name="item_main">На главную</string>
+    <string name="item_account">Личный кабинет</string>
+    <string name="item_volunteer">Ещё бонусы</string>
+    <string name="pillikan_guide">FAQ</string>
+    <string name="item_about">О нас</string>
+    <string name="my_cards">Мои карты</string>
+    <string name="replenish_pilican_balance">Пополнить баланс</string>
+    <string name="history_balance">История транзакций</string>
+    <string name="notification_type_system">Системные уведомления</string>
+    <string name="notification_type_payment">История транзакций</string>
+    <string name="system_type_desc">Будь в курсе новостей, акций, скидок</string>
+    <string name="payment_type_desc">Уведомления  об оплате</string>
 
 </resources>

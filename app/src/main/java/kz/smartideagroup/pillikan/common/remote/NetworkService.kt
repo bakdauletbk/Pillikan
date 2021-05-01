@@ -1,16 +1,19 @@
 package kz.smartideagroup.pillikan.common.remote
 
 import kz.smartideagroup.pillikan.common.crash_report.CrashBody
+import kz.smartideagroup.pillikan.content.home.notifications.list.NotificationRequest
+import kz.smartideagroup.pillikan.content.home.notifications.list.NotificationsListResponse
 import kz.smartideagroup.pillikan.content.home.welcome.models.BannerListResponse
+import kz.smartideagroup.pillikan.content.home.welcome.models.NewRetailListRequest
+import kz.smartideagroup.pillikan.content.home.welcome.models.NewRetailListResponse
 import kz.smartideagroup.pillikan.content.sign_in.models.SignInRequest
 import kz.smartideagroup.pillikan.content.sign_in.models.SignInResponse
 import kz.smartideagroup.pillikan.content.sign_up.models.SignUpRequest
+import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
 
 interface NetworkService {
-
-
 
     @POST(EndPoints.SIGN_IN)
     suspend fun signIn(
@@ -39,7 +42,6 @@ interface NetworkService {
         @Body crashBody: CrashBody
     ): Response<Any?>
 
-
     @POST(EndPoints.SIGN_UP_SMS)
     suspend fun sendSMStoSignUp(
         @Header("username") phone: String,
@@ -63,6 +65,25 @@ interface NetworkService {
         @Header("Content-Type") contentType: String,
     ): Response<BannerListResponse>
 
+    @POST(EndPoints.NEW_RETAIL_LIST)
+    suspend fun getNewRetailList(
+        @Header("authorization") token: String?,
+        @Header("appver") appVer: String?,
+        @Header("Content-type") contentType: String?,
+        @Body newRetailListRequest: NewRetailListRequest?
+    ): Response<NewRetailListResponse>
 
+    @POST(EndPoints.GET_SYSTEM_NOTIFICATION)
+    suspend fun getSystemNotification(
+        @Header("authorization") token: String?,
+        @Header("appver") appVer: String?,
+        @Body pageNumber: NotificationRequest
+    ): Response<NotificationsListResponse>
 
+    @POST(EndPoints.GET_PAYMENT_NOTIFICATION)
+    suspend fun getPaymentNotification(
+        @Header("authorization") token: String?,
+        @Header("appver") appVer: String?,
+        @Body pageNumber: NotificationRequest
+    ): Response<NotificationsListResponse>
 }

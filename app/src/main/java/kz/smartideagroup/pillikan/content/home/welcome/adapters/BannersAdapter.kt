@@ -55,12 +55,12 @@ class BannersAdapter(private var callback: WelcomeFragment) :
             Glide
                 .with(callback.requireContext())
                 .load(url)
-                .addListener(imageLoadingListener(animPlaceholder))
+                .addListener(imageLoadingListener(animPlaceholder, callback))
                 .centerCrop()
                 .into(imageContainer)
         }
 
-        private fun imageLoadingListener(pendingImage: LottieAnimationView): RequestListener<Drawable?> {
+        private fun imageLoadingListener(pendingImage: LottieAnimationView, callback: WelcomeFragment): RequestListener<Drawable?> {
             return object : RequestListener<Drawable?> {
                 override fun onLoadFailed(
                     e: GlideException?,
@@ -68,6 +68,7 @@ class BannersAdapter(private var callback: WelcomeFragment) :
                     target: Target<Drawable?>,
                     isFirstResource: Boolean
                 ): Boolean {
+                    callback.handleCrashAndReport(this.javaClass.name, e?.message.toString())
                     return false
                 }
 

@@ -14,7 +14,7 @@ import kz.smartideagroup.pillikan.common.base_vmmv.BaseFragment
 import java.lang.Exception
 
 
-class SplashFragment : BaseFragment(R.layout.fragment_splash), FragmentImpl {
+class SplashFragment : BaseFragment(R.layout.fragment_splash, R.id.main_container), FragmentImpl {
 
     private lateinit var viewModel: SplashViewModel
     private var isFirstLaunch = true

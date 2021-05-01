@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/default_padding_small">
+
+
+    <ImageView
+        android:id="@+id/notification_list_image"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="@dimen/default_padding_small"
+        android:src="@drawable/ic_pillikan_logo"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+    <androidx.cardview.widget.CardView
+        android:background="#f6f6f6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_padding_small"
+        app:cardCornerRadius="@dimen/default_retail_card_corner_radius"
+        app:cardElevation="@dimen/default_retail_card_elevation"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/notification_list_image"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:orientation="vertical"
+            android:padding="@dimen/default_padding_small">
+
+            <TextView
+
+                android:id="@+id/notification_list_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_16"
+                android:ellipsize="middle"
+                android:text="Заголовок сообщения"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_middle_16" />
+
+            <TextView
+
+                android:id="@+id/notification_list_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_16"
+                android:layout_marginVertical="@dimen/default_padding"
+                android:ellipsize="middle"
+                android:text="222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222"
+
+
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_middle_13" />
+
+            <TextView
+                android:id="@+id/notification_created_at"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_16"
+                android:ellipsize="middle"
+                android:text="2021.02.02"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="@dimen/text_middle_11" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

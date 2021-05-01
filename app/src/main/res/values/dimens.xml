@@ -5,17 +5,43 @@
     <dimen name="default_padding">16dp</dimen>
     <dimen name="default_padding_middle">12dp</dimen>
     <dimen name="default_padding_small">8dp</dimen>
+
     <dimen name="title_text_size">24sp</dimen>
     <dimen name="toolbar_logo_size">25dp</dimen>
     <dimen name="splash_logo_size">90dp</dimen>
     <dimen name="indicator_size">8dp</dimen>
+
     <dimen name="dp_0">0dp</dimen>
     <dimen name="dp_8">8dp</dimen>
     <dimen name="dp_16">16dp</dimen>
     <dimen name="dp_300">300dp</dimen>
     <dimen name="dp_200">200dp</dimen>
     <dimen name="dp_32">32dp</dimen>
+
     <dimen name="banners_recycler_height">150dp</dimen>
+
     <dimen name="slider_corners_radius">11dp</dimen>
     <dimen name="slider_card_elevation">1dp</dimen>
+
+    <dimen name="null_dp">0dp</dimen>
+    <dimen name="text_middle_11">11sp</dimen>
+    <dimen name="text_middle_16">16sp</dimen>
+
+
+    <dimen name="category_width">75dp</dimen>
+    <dimen name="category_corner_radius">12dp</dimen>
+    <dimen name="category_card_elevation">3dp</dimen>
+    <dimen name="category_size">40dp</dimen>
+    <dimen name="category_inner_radius">10dp</dimen>
+
+    <dimen name="dimens_ten">10dp</dimen>
+
+    <dimen name="default_padding_4dp">4dp</dimen>
+    <dimen name="default_padding_2dp">2dp</dimen>
+
+    <dimen name="default_retail_card_elevation">3dp</dimen>
+    <dimen name="default_retail_card_corner_radius">12dp</dimen>
+    <dimen name="retail_image_default_size">60dp</dimen>
+    <dimen name="retail_image_round_radius">30dp</dimen>
+    <dimen name="text_middle_13">13sp</dimen>
 </resources>

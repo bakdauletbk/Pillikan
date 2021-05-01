@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginHorizontal="@dimen/default_padding"
+    android:padding="@dimen/default_padding"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/default_retail_card_corner_radius"
+    app:cardElevation="@dimen/default_retail_card_elevation">
+
+    <LinearLayout
+        android:padding="@dimen/default_padding_small"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_margin="@dimen/default_padding"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:text="Готово!"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:layout_gravity="center"
+            android:src="@drawable/ic_check_mark"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"/>
+
+
+        <TextView
+            android:id="@+id/dialog_success_message"
+            android:layout_margin="@dimen/default_padding"
+            android:gravity="center"
+            android:text="Текст раз два три четыре пять шесть семья восемь"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/dialog_success_close"
+            android:layout_marginHorizontal="@dimen/default_padding"
+            android:layout_marginBottom="@dimen/default_padding"
+            android:padding="@dimen/default_padding"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:text="Хорошо"
+            android:background="@drawable/bg_light_orange_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

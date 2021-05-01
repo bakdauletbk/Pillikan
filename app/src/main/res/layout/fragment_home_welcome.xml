@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white"
+    android:fillViewport="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".content.home.welcome.WelcomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/default_padding">
+        android:paddingHorizontal="@dimen/default_padding_small"
+        android:paddingVertical="@dimen/default_padding_small">
 
         <TextView
             android:id="@+id/welcome_page_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/default_padding_small"
+            android:layout_marginBottom="@dimen/default_padding_small"
+            android:paddingVertical="@dimen/default_padding_small"
             android:text="@string/nav_home"
             android:textColor="@color/title_text_color"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,7 +31,7 @@
             android:id="@+id/welcome_page_notification_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/default_padding_small"
+            android:paddingVertical="@dimen/default_padding_small"
             android:src="@drawable/ic_baseline_notifications_24"
             app:layout_constraintBottom_toBottomOf="@+id/welcome_page_title"
             app:layout_constraintRight_toRightOf="parent"
@@ -36,7 +41,7 @@
             android:id="@+id/welcome_page_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/default_padding"
+            android:layout_marginVertical="@dimen/default_padding_small"
             android:background="@drawable/bg_search_bar"
             app:defaultQueryHint="Поиск"
             app:layout_constraintTop_toBottomOf="@+id/welcome_page_notification_button"
@@ -51,34 +56,49 @@
             app:layout_constraintDimensionRatio="343:170"
             app:layout_constraintTop_toBottomOf="@+id/welcome_page_search" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/main_categories_container_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layoutAnimation="@anim/layout_animation"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@+id/welcome_banners_recycler_view" />
+
         <TextView
             android:id="@+id/welcome_page_new_partners_capture"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_padding"
             android:text="@string/welcome_new_partners"
-            app:layout_constraintTop_toBottomOf="@+id/welcome_banners_recycler_view" />
+            app:layout_constraintTop_toBottomOf="@+id/main_categories_container_recycler_view" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/new_partners_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/default_padding"
+            android:layoutAnimation="@anim/layout_animation"
             app:layout_constraintTop_toBottomOf="@+id/welcome_page_new_partners_capture" />
 
-        <TextView
+        <Button
             android:id="@+id/show_more_partners"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/default_padding"
+            android:layout_marginTop="@dimen/default_padding"
             android:background="@drawable/bg_orange_button"
             android:gravity="center"
-            android:paddingVertical="@dimen/default_padding"
             android:text="@string/see_more_items"
             android:textColor="@color/white"
             app:layout_constraintTop_toBottomOf="@+id/new_partners_recycler_view" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:layout_constraintTop_toBottomOf="@+id/show_more_partners" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

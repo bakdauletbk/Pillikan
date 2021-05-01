@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="kz.smartideagroup.pillikan.content.home.HomeFoundationFragment"
-    >
+    tools:context="kz.smartideagroup.pillikan.content.home.HomeFoundationFragment">
 
     <fragment
         android:id="@+id/home_container"
@@ -16,30 +15,95 @@
         app:navGraph="@navigation/home_nav" />
 
     <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottomAppBar"
+        android:id="@+id/bottom_bar"
+        style="@style/Widget.MaterialComponents.BottomAppBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        style="@style/Widget.MaterialComponents.BottomAppBar"
         android:backgroundTint="@color/white"
         app:fabAlignmentMode="center"
-        app:fabCradleMargin="10dp"
-        app:fabCradleRoundedCornerRadius="10dp"
-        app:fabCradleVerticalOffset="5dp"
-        app:hideOnScroll="true"
-        app:navigationIcon="@drawable/ic_baseline_menu_24"/>
+        app:fabCradleRoundedCornerRadius="10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/custom_bottom_app"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/profile_view"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:paddingEnd="@dimen/default_padding_big"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/balance_view">
+
+                <TextView
+                    android:id="@+id/user_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/default_padding_big"
+                    android:layout_marginLeft="@dimen/default_padding_small"
+                    android:background="@drawable/rounded_light_blue_shape"
+                    android:drawablePadding="@dimen/default_padding_small"
+                    android:ellipsize="end"
+                    android:paddingHorizontal="@dimen/default_padding"
+                    android:singleLine="true"
+                    android:text="NickName"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/text_middle_11"
+                    app:drawableLeftCompat="@drawable/ic_avatar_bottom"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/balance_view"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:paddingLeft="@dimen/default_padding"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/profile_view"
+                app:layout_constraintRight_toRightOf="parent">
+
+                <TextView
+                    android:id="@+id/user_balance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/default_padding_big"
+                    android:background="@drawable/rounded_light_orange_shape"
+                    android:drawablePadding="@dimen/default_padding_small"
+                    android:paddingHorizontal="@dimen/default_padding"
+                    android:text="100 000"
+                    android:textColor="@color/gold"
+                    android:textSize="@dimen/text_middle_11"
+                    app:drawableLeftCompat="@drawable/ic_cash_back"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.google.android.material.bottomappbar.BottomAppBar>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:background="@drawable/bg_orange_gradient_round"
+        android:id="@+id/fabQr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:backgroundTint="@color/main_orange"
-        android:foregroundTint="@color/white"
-        android:tint="@color/white"
-        app:fabSize="normal"
-        app:layout_anchor="@id/bottomAppBar"
-        android:src="@drawable/ic_baseline_qr_code_24"/>
+        android:backgroundTint="@color/dark_orange"
+        app:layout_anchor="@id/bottom_bar"
+        app:srcCompat="@drawable/ic_qr_code"
+        app:tint="@android:color/white" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

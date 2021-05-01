@@ -25,7 +25,7 @@ import kz.smartideagroup.pillikan.common.views.viewBinding
 import kz.smartideagroup.pillikan.databinding.FragmentSignInBinding
 import org.jetbrains.anko.sdk27.coroutines.onClick
 
-class SignInFragment : BaseFragment(R.layout.fragment_sign_in), FragmentImpl {
+class SignInFragment : BaseFragment(R.layout.fragment_sign_in, R.id.main_container), FragmentImpl {
 
     private lateinit var viewModel: SignInViewModel
     private val binding by viewBinding(FragmentSignInBinding::bind)
@@ -57,6 +57,7 @@ class SignInFragment : BaseFragment(R.layout.fragment_sign_in), FragmentImpl {
         binding.authorizationFragmentPhoneValue.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                binding.authorizationConfirmButton.isEnabled = true
                 binding.authorizationFragmentPhoneTil.error = null
             }
 
@@ -65,6 +66,7 @@ class SignInFragment : BaseFragment(R.layout.fragment_sign_in), FragmentImpl {
         binding.authorizationInputPasswordValue.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                binding.authorizationConfirmButton.isEnabled = true
                 binding.authorizationInputPasswordLayout.error = null
             }
 
@@ -77,6 +79,7 @@ class SignInFragment : BaseFragment(R.layout.fragment_sign_in), FragmentImpl {
             changeSignInType()
         }
         binding.authorizationConfirmButton.onClick {
+            binding.authorizationConfirmButton.isEnabled = false
             validateAuthData()
         }
     }
@@ -85,7 +88,10 @@ class SignInFragment : BaseFragment(R.layout.fragment_sign_in), FragmentImpl {
         viewModel.isLoading.observe(viewLifecycleOwner, {
             when (it) {
                 true -> showLoading()
-                false -> hideLoading()
+                false -> {
+                    binding.authorizationConfirmButton.isEnabled = true
+                    hideLoading()
+                }
             }
         })
 
@@ -95,6 +101,7 @@ class SignInFragment : BaseFragment(R.layout.fragment_sign_in), FragmentImpl {
                 true -> showException(getString(R.string.unknown))
                 false -> showException(it)
             }
+            binding.authorizationConfirmButton.isEnabled = true
         })
 
         viewModel.isSuccess.observe(viewLifecycleOwner, {
@@ -190,12 +197,12 @@ class SignInFragment : BaseFragment(R.layout.fragment_sign_in), FragmentImpl {
 
     private fun changeSignInTypeToPass() {
         signInType = SIGN_IN_TYPE_PASS
-        binding.authTypeChangeButton.setText(getString(R.string.sign_in_type_sms))
+        binding.authTypeChangeButton.text = getString(R.string.sign_in_type_sms)
     }
 
     private fun changeSignInTypeToSms() {
         signInType = SIGN_IN_TYPE_SMS
-        binding.authTypeChangeButton.setText(getString(R.string.sign_in_type_password))
+        binding.authTypeChangeButton.text = getString(R.string.sign_in_type_password)
         validateSmsData()
     }
 
